@@ -11,6 +11,18 @@ export const Pet = sequelize.define('pet', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    gender: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    age: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    observations: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
 }, {
     timestamps: false
 })

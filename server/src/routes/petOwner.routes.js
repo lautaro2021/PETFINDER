@@ -1,11 +1,12 @@
 import {Router} from 'express';
-import { getPetOwner, createPetOwner } from '../controllers/petOwner.controller.js';
+import { getAllPetOwner, getPetOwner, createPetOwner, updatePetOwner, deletePetOwner } from '../controllers/petOwner.controller.js';
 
 const router = Router();
 
-router.get('/petowner/:id', getPetOwner)
+router.get('/petowner', getAllPetOwner)
 router.post('/petowner', createPetOwner)
-router.put('/petowner/:id')
-router.delete('/petowner/:id')
+router.get('/petowner/:id', getPetOwner)
+router.put('/petowner/:id', updatePetOwner)
+router.delete('/petowner/:id', deletePetOwner)
 
 export default router;

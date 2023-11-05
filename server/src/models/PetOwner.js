@@ -18,12 +18,19 @@ export const PetOwner = sequelize.define("pet_owners", {
     },
     location: {
         type: DataTypes.STRING,
+        allowNull: false,
     },
-    state: {
+    province: {
         type: DataTypes.STRING,
+        allowNull: false
+    },
+    direction: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
     email: {
         type: DataTypes.STRING,
+        allowNull: false
     },
 }, {
     timestamps: false
@@ -36,5 +43,5 @@ PetOwner.hasMany(Pet, {
 })
 Pet.belongsTo(PetOwner, {
     foreignKey: 'petOwnerId',
-    targetId: 'id'
+    targetKey: 'id'
 })
