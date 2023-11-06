@@ -17,7 +17,7 @@
     justify-content: space-between;
     width: 100%;
 }
-.navbar div img{
+.profile_image{
     width: 41px;
     height: 41px;
     border-radius: 100%;
