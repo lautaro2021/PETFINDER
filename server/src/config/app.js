@@ -4,7 +4,9 @@ import petRoutes from '../routes/pet.routes.js'
 
 const app = express();
 
+//middlewares
 app.use(express.json());
+
 app.use(petOwnerRoutes);
 app.use(petRoutes)
 

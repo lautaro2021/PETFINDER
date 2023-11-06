@@ -1,4 +1,4 @@
-import { PetOwner } from "../models/petOwner.js"
+import { PetOwner } from "../models/PetOwner.js"
 import { Pet } from "../models/Pet.js";
 
 export const getAllPetOwner = async (req, res) => {
