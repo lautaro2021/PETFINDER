@@ -10,7 +10,7 @@ import ActionButton from "@/app/components/button/ActionButton";
 function UserProfile() {
   return (
     <section className={style.section}>
-      <Typography color="#000" size="sm" textAlignment="center">
+      <Typography color="#000" size="sm" textalignment="center">
         <p>Información personal</p>
       </Typography>
       <figure>
@@ -19,7 +19,7 @@ function UserProfile() {
           <MdEdit />
         </div>
       </figure>
-      <form action="POST">
+      <form action="">
         <Input placeholder="Inserte su nombre" label="Nombre" />
         <Input placeholder="Inserte su apellido" label="Apellido" />
         <Input

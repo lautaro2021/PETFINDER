@@ -1,20 +1,47 @@
 import React from "react";
 import styled from "styled-components";
 
-function ActionButton({ text, action }: { text: string; action?: () => void }) {
-  return <StyledActionButton onClick={action}>{text}</StyledActionButton>;
+function ActionButton({
+  text,
+  action,
+  bgcolor,
+  textcolor,
+  border,
+}: {
+  text: string;
+  action?: () => void;
+  bgcolor?: string;
+  textcolor?: string;
+  border?: string;
+}) {
+  return (
+    <StyledActionButton
+      onClick={action}
+      bgcolor={bgcolor}
+      textcolor={textcolor}
+      border={border}
+    >
+      {text}
+    </StyledActionButton>
+  );
 }
 
 export default ActionButton;
 
-const StyledActionButton = styled.button`
+interface StyledActionInterface {
+  bgcolor?: string;
+  textcolor?: string;
+  border?: string;
+}
+
+const StyledActionButton = styled.button<StyledActionInterface>`
   width: 100%;
-  background-color: #224f56;
-  color: white;
+  background-color: ${(props) => (props.bgcolor ? props.bgcolor : "#224f56")};
+  color: ${(props) => (props.textcolor ? props.textcolor : "#ffffff")};
   font-size: 13px;
   font-weight: 500;
   padding: 12px 0px;
   text-align: center;
-  border: none;
+  border: ${(props) => (props.border ? props.border : "none")};
   border-radius: 100px;
 `;

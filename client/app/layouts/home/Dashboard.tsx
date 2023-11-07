@@ -11,7 +11,7 @@ function Dashboard() {
     <section className={style.section}>
       <Link href="/pet-profile">
         <StyledArticle background={1} height={"250px"}>
-          <Typography color="white" textAlignment="start" size="md">
+          <Typography color="white" textalignment="start" size="md">
             <p>Editar o ingresar los datos de mis mascotas</p>
           </Typography>
           <img src="/assets/images/dog.svg" />
@@ -19,14 +19,14 @@ function Dashboard() {
       </Link>
       <Link href="/profile">
         <StyledArticle background={2} height={"190px"}>
-          <Typography color="white" textAlignment="start">
+          <Typography color="white" textalignment="start">
             <p>Editar mi información personal</p>
           </Typography>
           <img src="/assets/images/editprofile.svg" />
         </StyledArticle>
       </Link>
       <StyledArticle background={3} height={"auto"}>
-        <Typography color="black" textAlignment="start" size="ssm">
+        <Typography color="black" textalignment="start" size="ssm">
           <p>
             Ingresa a nuestra tienda y conocé todos los productos y novedades
             que tenemos para ofrecerte

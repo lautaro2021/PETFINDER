@@ -10,7 +10,7 @@ import ActionButton from "@/app/components/button/ActionButton";
 function PetProfileLayout() {
   return (
     <section className={style.section}>
-      <Typography color="#000" size="sm" textAlignment="center">
+      <Typography color="#000" size="sm" textalignment="center">
         <p>Información personal</p>
       </Typography>
       <figure>
@@ -19,7 +19,7 @@ function PetProfileLayout() {
           <MdEdit />
         </div>
       </figure>
-      <form action="POST">
+      <form action="">
         <Input placeholder="Inserte el apodo" label="Apodo" />
         <Input placeholder="Inserte el sexo" label="Sexo" />
         <Input placeholder="Inserte la raza" label="Raza" />

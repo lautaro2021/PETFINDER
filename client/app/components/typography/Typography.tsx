@@ -4,16 +4,16 @@ import styled from "styled-components";
 function Typography({
   color,
   size = "sm",
-  textAlignment = "start",
+  textalignment = "start",
   children,
 }: {
   color: string;
   size?: "ssm" | "sm" | "md";
-  textAlignment: "start" | "center";
+  textalignment: "start" | "center";
   children: React.ReactNode;
 }) {
   return (
-    <StyledText color={color} textAlignment={textAlignment} size={size}>
+    <StyledText color={color} textalignment={textalignment} size={size}>
       {children}
     </StyledText>
   );
@@ -24,12 +24,12 @@ export default Typography;
 interface TypographyType {
   color: string;
   size: string;
-  textAlignment: string;
+  textalignment: string;
 }
 
 const StyledText = styled.div<TypographyType>`
   color: ${(props) => props.color};
-  text-align: ${(props) => props.textAlignment};
+  text-align: ${(props) => props.textalignment};
   ${(props) =>
     props.size === "sm"
       ? "font-size: 25px;"
