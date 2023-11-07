@@ -32,8 +32,8 @@ const StyledText = styled.div<TypographyType>`
   text-align: ${(props) => props.textAlignment};
   ${(props) =>
     props.size === "sm"
-      ? "font-size: 25px; font-weight: 500"
+      ? "font-size: 25px;"
       : props.size === "md"
       ? "font-size: 30px; font-weight: 600"
-      : "font-size: 18px; font-weight: 500"}
+      : "font-size: 18px;"}
 `;

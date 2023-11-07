@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 
-function Button({
+function NavButton({
   text,
   href = "",
   type,
@@ -26,7 +26,7 @@ function Button({
   }
 }
 
-export default Button;
+export default NavButton;
 
 const StyledButton = styled.button`
   border: 1px solid #000;

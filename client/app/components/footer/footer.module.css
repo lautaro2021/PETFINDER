@@ -20,5 +20,10 @@
 .footer nav button{
     border: none;
     background: none;
-
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
