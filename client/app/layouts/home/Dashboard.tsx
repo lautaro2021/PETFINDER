@@ -63,6 +63,10 @@ const StyledArticle = styled.article<StyledArticleInterface>`
       ? "#224F56"
       : "#F5F5F5"};
 
+  p {
+    max-width: 270px;
+  }
+
   img {
     position: absolute;
     bottom: 0;

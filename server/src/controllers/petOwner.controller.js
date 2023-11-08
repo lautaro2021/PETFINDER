@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import { PetOwner } from "../models/PetOwner.js"
 import { Pet } from "../models/Pet.js";
 
@@ -25,15 +26,17 @@ export const getPetOwner = async (req, res) => {
 }
 
 export const createPetOwner = async (req, res) => {
-    const {name, phone, location, province, direction, email} = req.body;
+    const {name, phone, location, province, direction, email, password} = req.body;
     try {
+        const hashedPassword = bcrypt.hashSync(password, 10);
         const newPetOwner = await PetOwner.create({
             name,
             phone,
             location,
             province,
             direction,
-            email
+            email,
+            password: hashedPassword
         })
         newPetOwner ? res.status(200).json(newPetOwner) : res.status(404).send('Creation error');
     }

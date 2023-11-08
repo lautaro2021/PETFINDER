@@ -8,8 +8,8 @@
     background: rgba(17, 40, 43, 0.74);
     position: fixed;
     top: 0;
-    left: 0;
     z-index: 500;
+    max-width: 550px;
 }
 .navbar div{
     display: flex;
