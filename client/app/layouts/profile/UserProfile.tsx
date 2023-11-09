@@ -27,15 +27,9 @@ function UserProfile() {
           label="Teléfono de contacto 1"
           type="number"
         />
-        <Input
-          placeholder="Inserte su teléfono de contacto 2"
-          label="Teléfono de contacto 2"
-          type="number"
-        />
         <Input placeholder="Inserte su provincia" label="Provincia" />
         <Input placeholder="Inserte su localidad" label="Localidad" />
         <Input placeholder="Inserte su email" label="Email" />
-        <Textarea label="Observaciones" placeholder="Inserte observaciones.." />
         <ActionButton text="Guardar información" />
       </form>
     </section>

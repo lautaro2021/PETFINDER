@@ -6,16 +6,29 @@ function Input({
   type = "text",
   placeholder,
   label,
+  onChange,
+  name,
+  value,
 }: {
   id?: string;
   type?: string;
   placeholder: string;
   label: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  name?: any;
+  value?: any;
 }) {
   return (
     <StyledInput>
       <label htmlFor={id}>{label}</label>
-      <input id={id} type={type} placeholder={placeholder} />
+      <input
+        id={id}
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+        name={name}
+        value={value}
+      />
     </StyledInput>
   );
 }

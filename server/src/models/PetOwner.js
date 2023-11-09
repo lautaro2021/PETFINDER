@@ -13,7 +13,7 @@ export const PetOwner = sequelize.define("pet_owners", {
         allowNull: false
     },
     phone: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false
     },
     location: {
@@ -21,10 +21,6 @@ export const PetOwner = sequelize.define("pet_owners", {
         allowNull: false,
     },
     province: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    direction: {
         type: DataTypes.STRING,
         allowNull: false
     },

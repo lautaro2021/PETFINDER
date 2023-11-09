@@ -8,10 +8,3 @@ export default function Home() {
     </main>
   );
 }
-
-// export async function getServerSideProps(context: GetServerSidePropsContext) {
-//   const { res } = context;
-//   res.writeHead(302, { Location: "/login" });
-//   res.end();
-//   return { props: {} };
-// }

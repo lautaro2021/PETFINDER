@@ -9,7 +9,7 @@ function ActionButton({
   border,
 }: {
   text: string;
-  action?: () => void;
+  action?: any;
   bgcolor?: string;
   textcolor?: string;
   border?: string;

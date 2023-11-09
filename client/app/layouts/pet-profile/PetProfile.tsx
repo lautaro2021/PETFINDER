@@ -11,7 +11,7 @@ function PetProfileLayout() {
   return (
     <section className={style.section}>
       <Typography color="#000" size="sm" textalignment="center">
-        <p>Información personal</p>
+        <p>Información de tu mascota</p>
       </Typography>
       <figure>
         <img />
@@ -50,7 +50,6 @@ function PetProfileLayout() {
           placeholder="Inserte veterinaria amiga"
           label="Veterinaria amiga"
         />
-        <Textarea label="Observaciones" placeholder="Describa.." />
         <ActionButton text={"Guardar información"} />
       </form>
     </section>
