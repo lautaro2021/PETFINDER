@@ -7,6 +7,8 @@ import style from "./footer.module.css";
 function Footer() {
   const pathname = usePathname();
 
+  console.log(pathname.split("/"));
+
   if (pathname !== "/login" && pathname !== "/register") {
     return (
       <footer className={style.footer}>
@@ -15,7 +17,7 @@ function Footer() {
             <button
               style={{
                 background: `${
-                  pathname === "/pet-profile"
+                  pathname.split("/")[1] === "pet-profile"
                     ? "rgba(77, 77, 77, 0.53)"
                     : "none"
                 }`,

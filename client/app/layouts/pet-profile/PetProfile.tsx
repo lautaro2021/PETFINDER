@@ -4,7 +4,6 @@ import style from "./pet-profile.module.css";
 import Typography from "@/app/components/typography/Typography";
 import { MdEdit } from "react-icons/md";
 import Input from "@/app/components/input/Input";
-import Textarea from "@/app/components/textarea/Textarea";
 import ActionButton from "@/app/components/button/ActionButton";
 
 function PetProfileLayout() {

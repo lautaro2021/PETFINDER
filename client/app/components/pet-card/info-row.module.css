@@ -1,0 +1,12 @@
+.row_container{
+    display: flex;
+    align-items: center;
+    color: white;
+    gap: 8px;
+    font-size: 13px;
+    margin: 8px 0px;
+}
+.row_container img{
+    width: 19px;
+    height: 19px;
+}
