@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import style from "./user-profile.module.css";
 import Typography from "@/app/components/typography/Typography";
