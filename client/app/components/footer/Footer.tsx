@@ -1,13 +1,11 @@
 "use client";
 import React from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import style from "./footer.module.css";
 
 function Footer() {
   const pathname = usePathname();
-
-  console.log(pathname.split("/"));
 
   if (pathname !== "/login" && pathname !== "/register") {
     return (
