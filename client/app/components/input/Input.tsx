@@ -15,7 +15,7 @@ function Input({
   placeholder: string;
   label: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  name?: any;
+  name?: string;
   value?: any;
 }) {
   return (

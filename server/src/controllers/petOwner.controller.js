@@ -25,20 +25,40 @@ export const getPetOwner = async (req, res) => {
     }
 }
 
+export const getPetOwnerByEmail = async (req, res) => {
+    const {email} = req.query
+    try{
+        if(email){
+            const findPetOwnerByEmail = await PetOwner.findOne({where: {email}})
+            findPetOwnerByEmail ? res.status(200).json(findPetOwnerByEmail) : res.status(404).send('PetOwner not found')
+        }
+    }
+    catch (error){
+        res.status(500).send('Internal server error')
+        throw new Error(error)
+    }
+}
+
+
 export const createPetOwner = async (req, res) => {
-    const {name, phone, location, province, direction, email, password} = req.body;
+    const {name, surname, phone, location, province,  email} = req.body;
     try {
-        const hashedPassword = bcrypt.hashSync(password, 10);
-        const newPetOwner = await PetOwner.create({
-            name,
-            phone,
-            location,
-            province,
-            direction,
-            email,
-            password: hashedPassword
-        })
-        newPetOwner ? res.status(200).json(newPetOwner) : res.status(404).send('Creation error');
+        const findPetOwnerByEmail = await PetOwner.findOne({where: {email}})
+        if(!findPetOwnerByEmail){
+            const newPetOwner = await PetOwner.create({
+                name,
+                surname,
+                phone,
+                location,
+                province,
+                email,
+            })
+            newPetOwner ? res.status(200).json(newPetOwner) : res.status(404).send('Creation error');
+        }
+        else{
+            res.status(404).send('A user already exists with that email')
+        }
+
     }
     catch (error) {
         res.status(500).send('Internal server error')

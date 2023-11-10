@@ -27,10 +27,7 @@ function RegisterLayout() {
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const req = await axios.post("http://localhost:3001/petowner", form);
-    console.log(req);
   };
-
-  console.log(form);
 
   return (
     <section className={style.section}>
