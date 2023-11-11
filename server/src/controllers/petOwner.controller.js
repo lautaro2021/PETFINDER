@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import { PetOwner } from "../models/PetOwner.js"
 import { Pet } from "../models/Pet.js";
 
@@ -29,7 +28,7 @@ export const getPetOwnerByEmail = async (req, res) => {
     const {email} = req.query
     try{
         if(email){
-            const findPetOwnerByEmail = await PetOwner.findOne({where: {email}})
+            const findPetOwnerByEmail = await PetOwner.findOne({where: {email}, include: Pet})
             findPetOwnerByEmail ? res.status(200).json(findPetOwnerByEmail) : res.status(404).send('PetOwner not found')
         }
     }
