@@ -3,3 +3,23 @@
     flex-direction: column;
     gap: 20px;
 }
+
+.ArtcilesHome {
+width: 100%;
+height: auto;
+border-radius: 20px;
+position: relative;
+padding: 35px 40px;
+background: #F5F5F5;
+
+}
+.ArtcilesHome p{
+  max-width: 270px;
+}
+  
+.ArtcilesHome img {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 0px 0px 20px 0px;
+}
