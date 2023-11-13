@@ -9,7 +9,7 @@ function PetCard({
   location,
 }: {
   name: string;
-  race: string;
+  race: string | undefined;
   location: string;
 }) {
   return (

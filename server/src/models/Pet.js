@@ -12,7 +12,7 @@ export const Pet = sequelize.define('pet', {
         allowNull: false,
     },
     gender: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM('Macho', 'Hembra'),
     },
     age: {
         type: DataTypes.STRING,

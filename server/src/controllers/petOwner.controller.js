@@ -24,12 +24,16 @@ export const getPetOwner = async (req, res) => {
     }
 }
 
-export const getPetOwnerByEmail = async (req, res) => {
-    const {email} = req.query
+export const getOrCreatePetOwnerByEmail = async (req, res) => {
+    const {email, picture} = req.query
     try{
         if(email){
-            const findPetOwnerByEmail = await PetOwner.findOne({where: {email}, include: Pet})
-            findPetOwnerByEmail ? res.status(200).json(findPetOwnerByEmail) : res.status(404).send('PetOwner not found')
+            const [petOwner, created] = await PetOwner.findOrCreate({
+                where: {email},
+                include: Pet,
+                defaults: {email, picture}
+            })
+            petOwner ? res.status(200).json(petOwner) : res.status(404).send('Creation failed')
         }
     }
     catch (error){
@@ -52,7 +56,7 @@ export const createPetOwner = async (req, res) => {
                 province,
                 email,
             })
-            newPetOwner ? res.status(200).json(newPetOwner) : res.status(404).send('Creation error');
+            newPetOwner ? res.status(200).json(newPetOwner) : res.status(404).send('Creation failed');
         }
         else{
             res.status(404).send('A user already exists with that email')

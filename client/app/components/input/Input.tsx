@@ -1,5 +1,5 @@
 import React from "react";
-import style from './input.module.css'
+import style from "./input.module.css";
 
 function Input({
   id,
@@ -9,6 +9,7 @@ function Input({
   onChange,
   name,
   value,
+  disabled,
 }: {
   id?: string;
   type?: string;
@@ -17,10 +18,13 @@ function Input({
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   value?: any;
+  disabled?: boolean;
 }) {
   return (
     <div className={style.InputContainer}>
-      <label className={style.LabelInput} htmlFor={id}>{label}</label>
+      <label className={style.LabelInput} htmlFor={id}>
+        {label}
+      </label>
       <input
         className={style.Input}
         id={id}
@@ -29,6 +33,7 @@ function Input({
         onChange={onChange}
         name={name}
         value={value}
+        disabled={disabled}
       />
     </div>
   );

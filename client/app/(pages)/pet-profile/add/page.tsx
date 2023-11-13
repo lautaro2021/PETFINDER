@@ -1,10 +1,13 @@
 import React from "react";
 import PetProfileLayout from "@/app/layouts/pet-profile/PetProfile";
+import { getData } from "@/app/utils/getData";
 
-function AddPet() {
+async function AddPet() {
+  const data = await getData();
+
   return (
     <main className="main_container">
-      <PetProfileLayout />
+      {data && <PetProfileLayout petOwnerId={data.id} />}
     </main>
   );
 }

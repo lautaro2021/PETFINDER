@@ -8,25 +8,23 @@ export const PetOwner = sequelize.define("pet_owners", {
         primaryKey: true,
         autoIncrement: true
     },
+    picture: {
+        type: DataTypes.STRING,
+    },
     name: {
         type: DataTypes.STRING,
-        allowNull: false
     },
     surname: {
         type: DataTypes.STRING,
-        allowNull: false
     },
     phone: {
         type: DataTypes.STRING,
-        allowNull: false
     },
     location: {
         type: DataTypes.STRING,
-        allowNull: false,
     },
     province: {
         type: DataTypes.STRING,
-        allowNull: false
     },
     email: {
         type: DataTypes.STRING,

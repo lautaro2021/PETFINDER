@@ -1,18 +1,11 @@
 import React from "react";
-import axios from "axios";
-import { getSession } from "@auth0/nextjs-auth0";
+import { getData } from "@/app/utils/getData";
 import FormProfile from "./FormProfile";
 
 async function UserProfile() {
-  const Session = await getSession();
+  const data = await getData();
 
-  let data;
-  if (Session) {
-    data = await axios
-      .get(`http://localhost:3001/petowner/login?email=${Session.user.email}`)
-      .then((res) => res.data);
-  }
-  return <FormProfile data={data} user={Session?.user} />;
+  return <FormProfile data={data} />;
 }
 
 export default UserProfile;

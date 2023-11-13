@@ -9,6 +9,7 @@ function Select({
   onChange,
   name,
   value,
+  options,
 }: {
   id?: string;
   type?: string;
@@ -17,6 +18,7 @@ function Select({
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   name?: string;
   value?: any;
+  options?: string[];
 }) {
   return (
     <StyledInput>
@@ -25,8 +27,18 @@ function Select({
         <option value="" disabled>
           {placeholder}
         </option>
-        <option value="SI">SI</option>
-        <option value="NO">NO</option>
+        {!options ? (
+          <>
+            <option value="SI">SI</option>
+            <option value="NO">NO</option>
+          </>
+        ) : (
+          options.map((option, index: number) => (
+            <option value={option} key={index}>
+              {option}
+            </option>
+          ))
+        )}
       </select>
     </StyledInput>
   );

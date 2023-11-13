@@ -1,25 +1,23 @@
-'use client'
-import React, { useEffect, useState } from "react";
+"use client";
+import React, { useState } from "react";
 import style from "./user-profile.module.css";
 import Typography from "@/app/components/typography/Typography";
-import { MdEdit } from "react-icons/md";
 import Input from "@/app/components/input/Input";
 import ActionButton from "@/app/components/button/ActionButton";
 import axios from "axios";
 import { ProfileType } from "@/app/types/profile.type";
-import { Claims } from "@auth0/nextjs-auth0";
 import Loader from "@/app/components/loader/Loader";
+import Swal from "sweetalert2";
 
-export default function FormProfile({user, data}:{user?:Claims ,data:ProfileType}){
+export default function FormProfile({ data }: { data: ProfileType }) {
   const [formData, setFormData] = useState<ProfileType>({
-    name: data.name,
-    surname: data.surname,
-    phone: data.phone,
-    province: data.province,
-    location: data.location,
-    email: data.email,
+    name: data?.name,
+    surname: data?.surname,
+    phone: data?.phone,
+    province: data?.province,
+    location: data?.location,
+    email: data?.email,
   });
-  const [profileImage, setProfileImage] = useState<any>(user?.picture || "");
 
   const handleFromData = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -30,24 +28,24 @@ export default function FormProfile({user, data}:{user?:Claims ,data:ProfileType
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!data) {
-      await axios
-        .post("http://localhost:3001/petowner", formData)
-        .then((res) => console.log(res.data))
-        .catch((error) => {
-          throw new Error(error);
+    await axios
+      .put(`http://localhost:3001/petowner/${data.id}`, formData)
+      .then((res) => {
+        Swal.fire({
+          title: "Cambios guardados con exito",
+          icon: "success",
         });
-    } else {
-      await axios
-        .put(`http://localhost:3001/petowner/${data.id}`, formData)
-        .then((res) => console.log(res.data))
-        .catch((error) => {
-          throw new Error(error);
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          title: "Error al guardar  tus cambios",
+          icon: "error",
         });
-    }
+      });
   };
 
-  if(!user?.email) return <Loader/>
+  if (!data) return <Loader />;
 
   return (
     <section className={style.section}>
@@ -55,12 +53,9 @@ export default function FormProfile({user, data}:{user?:Claims ,data:ProfileType
         <p>Información personal</p>
       </Typography>
       <figure>
-        <img src={profileImage} />
-        <div className={style.icon_container}>
-          <MdEdit />
-        </div>
+        <img src={data?.picture} />
       </figure>
-      <form action="POST">
+      <form action="PUT">
         <Input
           placeholder="Inserte su nombre"
           label="Nombre"
