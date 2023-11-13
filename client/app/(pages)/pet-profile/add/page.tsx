@@ -7,7 +7,7 @@ async function AddPet() {
 
   return (
     <main className="main_container">
-      {data && <PetProfileLayout petOwnerId={data.id} />}
+      {data && <PetProfileLayout userId={data.id} />}
     </main>
   );
 }

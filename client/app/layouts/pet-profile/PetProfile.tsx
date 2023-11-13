@@ -10,23 +10,27 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import type { PetType } from "@/app/types/pet.type";
 
-function PetProfileLayout({ petOwnerId }: { petOwnerId?: number }) {
+function PetProfileLayout({
+  userId,
+  petData,
+}: {
+  userId?: number;
+  petData?: PetType;
+}) {
   const [formData, setFormData] = useState<PetType>({
-    name: "",
-    gender: "",
-    age: "",
-    race: "",
-    disease: "",
-    diseaseType: "",
-    treatment: "",
-    treatmentType: "",
-    vaccines: "",
-    castrated: "",
-    petshop: "",
-    veterinary: "",
+    name: petData?.name ?? "",
+    gender: petData?.gender ?? "",
+    age: petData?.age ?? "",
+    race: petData?.race ?? "",
+    disease: petData?.disease ?? "",
+    diseaseType: petData?.diseaseType ?? "",
+    treatment: petData?.treatment ?? "",
+    treatmentType: petData?.treatmentType ?? "",
+    vaccines: petData?.vaccines ?? "",
+    castrated: petData?.castrated ?? "",
+    petshop: petData?.petshop ?? "",
+    veterinary: petData?.veterinary ?? "",
   });
-
-  console.log(petOwnerId);
 
   const handleForm = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -37,27 +41,44 @@ function PetProfileLayout({ petOwnerId }: { petOwnerId?: number }) {
     });
   };
 
-  console.log(formData);
-
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = { ...formData, petOwnerId: petOwnerId };
-    await axios
-      .post(`http://localhost:3001/pet`, data)
-      .then((res) => {
-        console.log(res);
-        Swal.fire({
-          title: "Mascota creada con exito",
-          icon: "success",
+    const data = { ...formData, petOwnerId: userId };
+    if (!petData) {
+      await axios
+        .post(`http://localhost:3001/pet`, data)
+        .then((res) => {
+          console.log(res);
+          Swal.fire({
+            title: "Mascota creada con exito",
+            icon: "success",
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          Swal.fire({
+            title: "Error al crear tu mascota",
+            icon: "error",
+          });
         });
-      })
-      .catch((error) => {
-        console.log(error);
-        Swal.fire({
-          title: "Error al crear tu mascota",
-          icon: "error",
+    } else {
+      await axios
+        .put(`http://localhost:3001/pet/${petData.id}`, formData)
+        .then((res) => {
+          console.log(res);
+          Swal.fire({
+            title: "Mascota editada con exito",
+            icon: "success",
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          Swal.fire({
+            title: "Error al crear tu mascota",
+            icon: "error",
+          });
         });
-      });
+    }
   };
 
   return (
