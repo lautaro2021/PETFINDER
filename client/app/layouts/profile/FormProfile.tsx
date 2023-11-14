@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./user-profile.module.css";
 import Typography from "@/app/components/typography/Typography";
 import Input from "@/app/components/input/Input";

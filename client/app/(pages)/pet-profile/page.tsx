@@ -12,6 +12,7 @@ async function PetProfile() {
         data.pets?.map((pet, index: number) => (
           <PetCard
             petId={pet.id}
+            profileImage={pet.picture}
             name={pet.name}
             race={pet.race}
             location={data.location}

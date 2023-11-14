@@ -9,6 +9,7 @@ import ActionButton from "@/app/components/button/ActionButton";
 import Swal from "sweetalert2";
 import axios from "axios";
 import type { PetType } from "@/app/types/pet.type";
+import ProfileImage from "@/app/components/profile-image/ProfileImage";
 
 function PetProfileLayout({
   userId,
@@ -18,18 +19,19 @@ function PetProfileLayout({
   petData?: PetType;
 }) {
   const [formData, setFormData] = useState<PetType>({
-    name: petData?.name ?? "",
-    gender: petData?.gender ?? "",
-    age: petData?.age ?? "",
-    race: petData?.race ?? "",
-    disease: petData?.disease ?? "",
-    diseaseType: petData?.diseaseType ?? "",
-    treatment: petData?.treatment ?? "",
-    treatmentType: petData?.treatmentType ?? "",
-    vaccines: petData?.vaccines ?? "",
-    castrated: petData?.castrated ?? "",
-    petshop: petData?.petshop ?? "",
-    veterinary: petData?.veterinary ?? "",
+    name: petData?.name,
+    picture: petData?.picture,
+    gender: petData?.gender,
+    age: petData?.age,
+    race: petData?.race,
+    disease: petData?.disease,
+    diseaseType: petData?.diseaseType,
+    treatment: petData?.treatment,
+    treatmentType: petData?.treatmentType,
+    vaccines: petData?.vaccines,
+    castrated: petData?.castrated,
+    petshop: petData?.petshop,
+    veterinary: petData?.veterinary,
   });
 
   const handleForm = (
@@ -39,6 +41,17 @@ function PetProfileLayout({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = URL.createObjectURL(e.target.files[0]);
+
+      setFormData({
+        ...formData,
+        picture: file,
+      });
+    }
   };
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -86,12 +99,7 @@ function PetProfileLayout({
       <Typography color="#000" size="sm" textalignment="center">
         <p>Información de tu mascota</p>
       </Typography>
-      <figure>
-        <img />
-        <div className={style.icon_container}>
-          <MdEdit />
-        </div>
-      </figure>
+      <ProfileImage src={formData.picture} handler={handleImage} />
       <form action="POST">
         <Input
           placeholder="Inserte el Nombre"

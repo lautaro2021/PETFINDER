@@ -6,19 +6,21 @@ import InfoRow from "./InfoRow";
 
 function PetCard({
   petId,
+  profileImage,
   name,
   race,
   location,
 }: {
   petId?: number;
-  name: string;
+  profileImage?: string;
+  name?: string;
   race?: string;
   location?: string;
 }) {
   return (
     <Link href={`/pet-profile/edit?pet=${petId}`}>
       <div className={style.container}>
-        <img className={style.image_profile} />
+        <img className={style.image_profile} src={profileImage} />
         <div className={style.text_container}>
           <h3>{name}</h3>
           <InfoRow icon={1} text={race} />

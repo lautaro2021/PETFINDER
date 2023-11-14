@@ -10,15 +10,17 @@ function Input({
   name,
   value,
   disabled,
+  accept,
 }: {
   id?: string;
   type?: string;
   placeholder: string;
-  label: string;
+  label?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
   value?: any;
   disabled?: boolean;
+  accept?: any;
 }) {
   return (
     <div className={style.InputContainer}>
@@ -34,6 +36,7 @@ function Input({
         name={name}
         value={value}
         disabled={disabled}
+        accept={accept}
       />
     </div>
   );
