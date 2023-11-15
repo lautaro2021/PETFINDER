@@ -30,7 +30,7 @@ export default async function RootLayout({
         <body className={manrope.className}>
           <Navbar user={Session.user} />
           {children}
-          <Footer />
+          <Footer user={Session.user} />
         </body>
       </UserProvider>
     </html>

@@ -1,25 +1,67 @@
 .section{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: minmax(300px, 740px) 1fr;
+  grid-template-rows: minmax(300px, 530px) 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
 }
 
-.ArtcilesHome {
-width: 100%;
-height: auto;
-border-radius: 20px;
-position: relative;
-padding: 35px 40px;
-background: #F5F5F5;
+.section article {
+  height: 100%;
+  border-radius: 20px;
+  position: relative;
+  padding: 45px 60px;
+}
 
-}
-.ArtcilesHome p{
-  max-width: 270px;
-}
-  
-.ArtcilesHome img {
+.section article img {
   position: absolute;
   bottom: 0;
   right: 0;
   border-radius: 0px 0px 20px 0px;
+  height: 50%;
+}
+
+.article1{
+  background: linear-gradient(237deg, #49A9B7 1.61%, #224F56 109.87%);
+  font-size: clamp(28px, 5vw, 55px);
+  font-weight: 600;
+  color: white;
+}
+
+.article2{
+  background: #224F56;
+  font-size: clamp(25px, 5vw, 45px);
+  color: white;
+}
+
+.article3 {
+  font-size: clamp(18px, 4vw, 30px);
+  color: black;
+  background: #F5F5F5;
+}
+
+@media screen and (max-width: 700px){
+  .section{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .section article {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  position: relative;
+  padding: 30px 40px 55px;
+  }
+  .section article p{
+    max-width: 90%;
+  }
+    
+  .section article img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 0px 0px 20px 0px;
+  }
 }

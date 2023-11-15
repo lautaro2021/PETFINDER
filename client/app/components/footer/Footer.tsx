@@ -3,14 +3,23 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import style from "./footer.module.css";
+import type { Claims } from "@auth0/nextjs-auth0/edge";
 
-function Footer() {
+function Footer({ user }: { user: Claims }) {
   const pathname = usePathname();
 
   if (pathname !== "/login" && pathname !== "/register") {
     return (
       <footer className={style.footer}>
         <nav>
+          <img
+            src={user.picture}
+            width={50}
+            height={50}
+            className={style.profile_picture}
+            alt="profile image icon"
+            title="profile image icon"
+          />
           <Link href={"/pet-profile"}>
             <button
               style={{
@@ -21,7 +30,11 @@ function Footer() {
                 }`,
               }}
             >
-              <img src="/assets/icons/dog.svg" />
+              <img
+                src="/assets/icons/dog.svg"
+                alt="pet icon"
+                title="pet icon"
+              />
             </button>
           </Link>
           <Link href={"/"}>
@@ -32,7 +45,11 @@ function Footer() {
                 }`,
               }}
             >
-              <img src="/assets/icons/menu.svg" />
+              <img
+                src="/assets/icons/menu.svg"
+                alt="dashboard icon"
+                title="dashboard icon"
+              />
             </button>
           </Link>
           <Link href={"/profile"}>
@@ -43,9 +60,29 @@ function Footer() {
                 }`,
               }}
             >
-              <img src="/assets/icons/profile.svg" />
+              <img
+                src="/assets/icons/profile.svg"
+                alt="profile icon"
+                title="profile icon"
+              />
             </button>
           </Link>
+          <div className={style.logout_container}>
+            <a href="https://polytusk.com.ar/" target="_blank" rel="noreferrer">
+              <img
+                src="/assets/icons/shop.svg"
+                alt="shop icon"
+                title="shop icon"
+              />
+            </a>
+            <a href="/api/auth/logout">
+              <img
+                src="/assets/icons/logout.svg"
+                alt="logout icon"
+                title="logout icon"
+              />
+            </a>
+          </div>
         </nav>
       </footer>
     );

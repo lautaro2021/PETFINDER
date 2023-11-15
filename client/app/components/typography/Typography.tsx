@@ -17,7 +17,7 @@ function Typography({
         color: color,
         textAlign: textalignment,
         fontSize: fontSizes[size],
-        fontWeight: size === "md" ? 600 : ""
+        fontWeight: size === "md" ? 600 : "",
       }}
     >
       {children}
@@ -29,6 +29,6 @@ export default Typography;
 
 const fontSizes = {
   sm: "25px",
-  md: "30px",
+  md: "28px",
   ssm: "18px",
-}
+};
