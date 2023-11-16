@@ -10,14 +10,20 @@
 .LabelInput {
   font-weight: 500;
 }
-
 .Input {
   padding: 10px 15px;
   border-radius: 100px;
   border: 1px solid #e1e1e1;
-
+  background-color: #f5f5f5;
 }
+
 .Input:focus {
   outline: 0;
   border: 1px solid #c5c5c5;
+}
+
+@media screen and (max-width: 700px){
+  .Input {
+    background-color: white;
+  }
 }

@@ -29,6 +29,9 @@ export const PetOwner = sequelize.define("pet_owners", {
     email: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    info: {
+        type: DataTypes.STRING,
     }
 }, {
     timestamps: false
