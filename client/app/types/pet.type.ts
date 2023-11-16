@@ -1,6 +1,9 @@
+import { ProfileType } from "./profile.type";
+
 export type PetType = {
   id?: number;
   petOwnerId?: number;
+  pet_owner?: ProfileType;
   picture?: string;
   name?: string;
   gender?: string;

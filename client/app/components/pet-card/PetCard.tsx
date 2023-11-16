@@ -18,7 +18,7 @@ function PetCard({
   location?: string;
 }) {
   return (
-    <Link href={`/pet-profile/edit?pet=${petId}`}>
+    <Link href={`/pet-profile/${petId}`}>
       <div className={style.container}>
         <img className={style.image_profile} src={profileImage} />
         <div className={style.text_container}>
@@ -26,9 +26,11 @@ function PetCard({
           <InfoRow icon={1} text={race} />
           <InfoRow icon={2} text={location} />
         </div>
-        <figure>
-          <MdEdit />
-        </figure>
+        <Link href={`/pet-profile/edit/${petId}`}>
+          <figure>
+            <MdEdit />
+          </figure>
+        </Link>
       </div>
     </Link>
   );

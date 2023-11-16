@@ -11,7 +11,7 @@ import axios from "axios";
 import type { PetType } from "@/app/types/pet.type";
 import ProfileImage from "@/app/components/profile-image/ProfileImage";
 
-function PetProfileLayout({
+function PetProfileEditLayout({
   userId,
   petData,
 }: {
@@ -19,6 +19,7 @@ function PetProfileLayout({
   petData?: PetType;
 }) {
   const [formData, setFormData] = useState<PetType>({
+    id: petData?.id,
     name: petData?.name,
     picture: petData?.picture,
     gender: petData?.gender,
@@ -199,4 +200,4 @@ function PetProfileLayout({
   );
 }
 
-export default PetProfileLayout;
+export default PetProfileEditLayout;

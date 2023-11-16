@@ -5,7 +5,7 @@ import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { getSession } from "@auth0/nextjs-auth0";
-import { redirect } from "next/navigation";
+import RedirectLogin from "./utils/redirectLogin";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -21,14 +21,12 @@ export default async function RootLayout({
 }) {
   const Session = await getSession();
 
-  if (!Session) {
-    redirect("/api/auth/login");
-  }
   return (
     <html lang="en">
       <UserProvider>
         <body className={manrope.className}>
-          <Navbar user={Session.user} />
+          <RedirectLogin user={Session}/>
+          <Navbar user={Session?.user || {}} />
           {children}
           <Footer />
         </body>

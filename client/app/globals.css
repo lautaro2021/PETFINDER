@@ -1,4 +1,14 @@
 :root {
+  /* colors */
+  --color-black: #000;
+  --color-white: #fff;
+  --color-grey: #838383;
+
+  /* backgrounds */
+  --bg-color-grey: #f2f2f2;
+  --bg-color-primary: #3C8B96;
+  
+  /* fonts */
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
@@ -28,12 +38,23 @@ a {
 
 main {
   width: 100%;
-  max-width: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main_container{
-  padding: 0px 40px;
-  padding-top: 85px;
-  padding-bottom: 100px;
+  padding: 85px 0px 100px;
+}
+
+section {
+  max-width: 1280px;
+  width: 90%;
+}
+
+
+.container{
+  width: 90%;
+  max-width: 1280px;
 }
 
