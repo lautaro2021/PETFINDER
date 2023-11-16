@@ -9,5 +9,6 @@ export type ProfileType = {
   province?: string;
   email: string | null | undefined;
   picture?: string;
+  info?: string;
   pets?: PetType[];
 };

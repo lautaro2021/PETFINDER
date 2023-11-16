@@ -1,29 +1,33 @@
 .navbar{
-    width: 100%;
-    padding: 18px 40px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(35px);
-    background: rgba(17, 40, 43, 0.74);
-    position: fixed;
-    top: 0;
-    z-index: 500;
-    max-width: 550px;
+    display: none;
 }
-.navbar div{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-.profile_image{
-    width: 41px;
-    height: 41px;
-    border-radius: 100%;
-    background-color: white;
-}
-.navbar div button{
-    border: none;
-    background: none;
+@media screen and (max-width: 700px){
+    .navbar{
+        width: 100%;
+        padding: 18px 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(35px);
+        background: rgba(17, 40, 43, 0.74);
+        position: fixed;
+        top: 0;
+        z-index: 500;
+    }
+    .navbar div{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .profile_image{
+        width: 41px;
+        height: 41px;
+        border-radius: 100%;
+        background-color: white;
+    }
+    .navbar div button{
+        border: none;
+        background: none;
+    }
 }

@@ -1,8 +1,8 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import style from "./user-profile.module.css";
-import Typography from "@/app/components/typography/Typography";
 import Input from "@/app/components/input/Input";
+import Textarea from "@/app/components/textarea/Textarea";
 import ActionButton from "@/app/components/button/ActionButton";
 import axios from "axios";
 import { ProfileType } from "@/app/types/profile.type";
@@ -16,6 +16,7 @@ export default function FormProfile({ data }: { data: ProfileType }) {
     phone: data?.phone,
     province: data?.province,
     location: data?.location,
+    info: data?.info,
     email: data?.email,
   });
 
@@ -23,6 +24,13 @@ export default function FormProfile({ data }: { data: ProfileType }) {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      info: e.target.value,
     });
   };
 
@@ -45,13 +53,13 @@ export default function FormProfile({ data }: { data: ProfileType }) {
       });
   };
 
+  console.log(formData);
+
   if (!data) return <Loader />;
 
   return (
     <section className={style.section}>
-      <Typography color="#000" size="sm" textalignment="center">
-        <p>Información personal</p>
-      </Typography>
+      <p>Información personal</p>
       <figure>
         <img src={data?.picture} />
       </figure>
@@ -97,6 +105,13 @@ export default function FormProfile({ data }: { data: ProfileType }) {
           label="Email"
           name="email"
           value={formData.email}
+          onChange={handleFromData}
+        />
+        <Textarea
+          placeholder="Inserte información adicional"
+          label="Información adicional"
+          value={formData.info}
+          onChange={handleTextArea}
         />
         <ActionButton text="Guardar información" action={submitForm} />
       </form>

@@ -28,7 +28,7 @@ export default async function RootLayout({
           <RedirectLogin user={Session}/>
           <Navbar user={Session?.user || {}} />
           {children}
-          <Footer />
+          <Footer user={Session.user} />
         </body>
       </UserProvider>
     </html>
