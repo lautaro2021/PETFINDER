@@ -25,10 +25,10 @@ export default async function RootLayout({
     <html lang="en">
       <UserProvider>
         <body className={manrope.className}>
-          <RedirectLogin user={Session}/>
+          <RedirectLogin user={Session} />
           <Navbar user={Session?.user || {}} />
           {children}
-          <Footer user={Session.user} />
+          <Footer user={Session?.user} />
         </body>
       </UserProvider>
     </html>

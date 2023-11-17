@@ -24,7 +24,7 @@ function Select({
     <StyledInput>
       <label htmlFor={id}>{label}</label>
       <select id={id} onChange={onChange} name={name} value={value}>
-        <option value="" disabled>
+        <option value="" defaultValue={""} hidden>
           {placeholder}
         </option>
         {!options ? (
@@ -62,10 +62,17 @@ const StyledInput = styled.div`
     padding: 10px 15px;
     border-radius: 100px;
     border: 1px solid #e1e1e1;
+    background-color: #f5f5f5;
 
     &:focus {
       outline: 0;
       border: 1px solid #c5c5c5;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    select {
+      background-color: white;
     }
   }
 `;

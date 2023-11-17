@@ -1,4 +1,5 @@
 .section{
+  width: 100%;
   display: grid;
   grid-template-columns: minmax(300px, 740px) 1fr;
   grid-template-rows: minmax(300px, 530px) 1fr;

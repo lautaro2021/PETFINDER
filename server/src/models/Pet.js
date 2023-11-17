@@ -16,12 +16,15 @@ export const Pet = sequelize.define('pet', {
     },
     gender: {
         type: DataTypes.ENUM('Macho', 'Hembra', ""),
+        allowNull: false,
     },
     age: {
         type: DataTypes.STRING,
+        allowNull: false,
     },
     race: {
         type: DataTypes.STRING,
+        allowNull: false,
     },
     disease: {
         type: DataTypes.ENUM("SI", "NO", ""),
@@ -45,6 +48,9 @@ export const Pet = sequelize.define('pet', {
         type: DataTypes.STRING,
     },
     veterinary: {
+        type: DataTypes.STRING
+    },
+    info: {
         type: DataTypes.STRING
     }
 }, {

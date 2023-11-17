@@ -7,15 +7,17 @@ function Textarea({
   label,
   value,
   onChange,
+  form,
 }: {
   id?: string;
   placeholder: string;
   label: string;
   value?: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  form?: "pet" | "petowner";
 }) {
   return (
-    <StyledTextArea>
+    <StyledTextArea form={form}>
       <label htmlFor={id}>{label}</label>
       <textarea
         id={id}
@@ -29,13 +31,19 @@ function Textarea({
 
 export default Textarea;
 
-const StyledTextArea = styled.div`
-  grid-area: 4 / 1 / 5 / 3;
+interface StyledTextAreaInterface {
+  form?: "pet" | "petowner";
+}
+
+const StyledTextArea = styled.div<StyledTextAreaInterface>`
+  grid-area: ${(props) =>
+    props.form === "pet" ? "7 / 1 / 8 / 3" : "4 / 1 / 5 / 3"};
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 8px;
   font-size: 14px;
+
   label {
     font-weight: 500;
   }

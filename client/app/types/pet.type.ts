@@ -17,4 +17,5 @@ export type PetType = {
   castrated?: string;
   petshop?: string;
   veterinary?: string;
+  info?: string;
 };

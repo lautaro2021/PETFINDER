@@ -5,7 +5,7 @@ import Link from "next/link";
 import style from "./footer.module.css";
 import type { Claims } from "@auth0/nextjs-auth0/edge";
 
-function Footer({ user }: { user: Claims }) {
+function Footer({ user }: { user?: Claims }) {
   const pathname = usePathname();
 
   if (pathname !== "/login" && pathname !== "/register") {
@@ -13,7 +13,7 @@ function Footer({ user }: { user: Claims }) {
       <footer className={style.footer}>
         <nav>
           <img
-            src={user.picture}
+            src={user?.picture}
             width={50}
             height={50}
             className={style.profile_picture}

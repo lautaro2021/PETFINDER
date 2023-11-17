@@ -20,6 +20,11 @@ export default function FormProfile({ data }: { data: ProfileType }) {
     email: data?.email,
   });
 
+  const formRequiredData = ["name", "surname", "phone"];
+  const validate = formRequiredData.every(
+    (key) => formData[key as keyof ProfileType]
+  );
+
   const handleFromData = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
@@ -66,21 +71,21 @@ export default function FormProfile({ data }: { data: ProfileType }) {
       <form action="PUT">
         <Input
           placeholder="Inserte su nombre"
-          label="Nombre"
+          label="Nombre(*)"
           name="name"
           value={formData.name}
           onChange={handleFromData}
         />
         <Input
           placeholder="Inserte su apellido"
-          label="Apellido"
+          label="Apellido(*)"
           name="surname"
           value={formData.surname}
           onChange={handleFromData}
         />
         <Input
           placeholder="Inserte un teléfono de contacto"
-          label="Teléfono de contacto"
+          label="Teléfono de contacto(*)"
           type="number"
           name="phone"
           value={formData.phone}
@@ -113,7 +118,11 @@ export default function FormProfile({ data }: { data: ProfileType }) {
           value={formData.info}
           onChange={handleTextArea}
         />
-        <ActionButton text="Guardar información" action={submitForm} />
+        <ActionButton
+          text="Guardar información"
+          action={submitForm}
+          disabled={!validate}
+        />
       </form>
     </section>
   );

@@ -1,8 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import style from "./pet-profile.module.css";
-import Typography from "@/app/components/typography/Typography";
-import { MdEdit } from "react-icons/md";
 import Input from "@/app/components/input/Input";
 import Select from "@/app/components/input/Select";
 import ActionButton from "@/app/components/button/ActionButton";
@@ -10,6 +8,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import type { PetType } from "@/app/types/pet.type";
 import ProfileImage from "@/app/components/profile-image/ProfileImage";
+import Textarea from "@/app/components/textarea/Textarea";
 
 function PetProfileEditLayout({
   userId,
@@ -33,7 +32,13 @@ function PetProfileEditLayout({
     castrated: petData?.castrated,
     petshop: petData?.petshop,
     veterinary: petData?.veterinary,
+    info: petData?.info,
   });
+
+  const formRequiredData = ["name", "gender", "race", "age"];
+  const validate = formRequiredData.every(
+    (key) => formData[key as keyof PetType]
+  );
 
   const handleForm = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -53,6 +58,13 @@ function PetProfileEditLayout({
         picture: file,
       });
     }
+  };
+
+  const handleTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      info: e.target.value,
+    });
   };
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -97,9 +109,7 @@ function PetProfileEditLayout({
 
   return (
     <section className={style.section}>
-      <Typography color="#000" size="sm" textalignment="center">
-        <p>Información de tu mascota</p>
-      </Typography>
+      <p>Información de mi mascota</p>
       <ProfileImage src={formData.picture} handler={handleImage} />
       <form action="POST">
         <Input
@@ -111,7 +121,7 @@ function PetProfileEditLayout({
         />
         <Select
           placeholder="Inserte el sexo"
-          label="Sexo"
+          label="Sexo(*)"
           name="gender"
           value={formData.gender}
           onChange={handleForm}
@@ -119,14 +129,14 @@ function PetProfileEditLayout({
         />
         <Input
           placeholder="Inserte la raza"
-          label="Raza"
+          label="Raza(*)"
           name="race"
           value={formData.race}
           onChange={handleForm}
         />
         <Input
           placeholder="Inserte la edad"
-          label="Edad"
+          label="Edad(*)"
           type="number"
           name="age"
           value={formData.age}
@@ -190,10 +200,17 @@ function PetProfileEditLayout({
           value={formData.veterinary}
           onChange={handleForm}
         />
+        <Textarea
+          placeholder="Inserte información adicional"
+          label="Información adicional"
+          value={formData.info}
+          onChange={handleTextArea}
+          form="pet"
+        />
         <ActionButton
           text={"Guardar información"}
           action={submitForm}
-          disabled={!formData.name}
+          disabled={!validate}
         />
       </form>
     </section>
