@@ -17,7 +17,7 @@ function PetProfileEditLayout({
 }: {
   userId?: number;
   petData?: PetType;
-  petId?: string,
+  petId?: string;
 }) {
   const [formData, setFormData] = useState<PetType>({
     id: petData?.id || petId,
@@ -75,36 +75,34 @@ function PetProfileEditLayout({
     if (!petData) {
       await axios
         .post(`http://localhost:3001/pet`, data)
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           Swal.fire({
             title: "Mascota creada con exito",
             icon: "success",
           });
         })
         .catch((error) => {
-          console.log(error);
           Swal.fire({
             title: "Error al crear tu mascota",
             icon: "error",
           });
+          throw new Error(error);
         });
     } else {
       await axios
         .put(`http://localhost:3001/pet/${petData.id}`, formData)
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           Swal.fire({
             title: "Mascota editada con exito",
             icon: "success",
           });
         })
         .catch((error) => {
-          console.log(error);
           Swal.fire({
             title: "Error al crear tu mascota",
             icon: "error",
           });
+          throw new Error(error);
         });
     }
   };

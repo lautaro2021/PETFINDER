@@ -6,7 +6,6 @@ const getData = async (url: string) => {
     const response = await axios.get(url);
     return response.data;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
@@ -18,7 +17,9 @@ const useFetcher = <T>(url: string, dependecy?: any) => {
   useEffect(() => {
     getData(url)
       .then((res) => setData(res))
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        throw new Error(error);
+      })
       .finally(() => setIsLoading(false));
   }, [dependecy]);
 

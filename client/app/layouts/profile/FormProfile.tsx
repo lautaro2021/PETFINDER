@@ -43,18 +43,18 @@ export default function FormProfile({ data }: { data: ProfileType }) {
     e.preventDefault();
     await axios
       .put(`http://localhost:3001/petowner/${data.id}`, formData)
-      .then((res) => {
+      .then(() => {
         Swal.fire({
           title: "Cambios guardados con exito",
           icon: "success",
         });
       })
       .catch((error) => {
-        console.log(error);
         Swal.fire({
           title: "Error al guardar  tus cambios",
           icon: "error",
         });
+        throw new Error(error);
       });
   };
 

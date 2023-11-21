@@ -9,7 +9,7 @@ async function Pets() {
   return (
     <main className="main_container">
       <div className={`container`}>
-        {data &&
+        {data?.pets?.length ? (
           data.pets?.map((pet, index: number) => (
             <PetCard
               petId={pet.id}
@@ -19,8 +19,10 @@ async function Pets() {
               location={data.location}
               key={index}
             />
-          ))}
-        <AddPet />
+          ))
+        ) : (
+          <AddPet />
+        )}
       </div>
     </main>
   );

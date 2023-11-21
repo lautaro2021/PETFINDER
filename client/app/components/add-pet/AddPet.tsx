@@ -1,15 +1,16 @@
 import React from "react";
-import Link from "next/link";
 import style from "./add-pet.module.css";
+import { CiWarning } from "react-icons/ci";
 
 function AddPet() {
   return (
-    <Link href="/pet-profile/add">
-      <div className={style.container}>
-        <img src="/assets/icons/add.svg" />
-        <p>Añadir una nueva Mascota</p>
-      </div>
-    </Link>
+    <div className={style.container}>
+      <CiWarning style={{ fontSize: "40px" }} />
+      <p>
+        No tiene ninguna mascota agregada. Vincule un QR a su cuenta para añadir
+        una mascota.
+      </p>
+    </div>
   );
 }
 
