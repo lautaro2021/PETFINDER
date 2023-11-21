@@ -25,13 +25,13 @@ export const getPetOwner = async (req, res) => {
 }
 
 export const getOrCreatePetOwnerByEmail = async (req, res) => {
-    const {email, picture} = req.query
+    const {email, picture, name, surname} = req.query
     try{
         if(email){
-            const [petOwner, created] = await PetOwner.findOrCreate({
+            const [petOwner] = await PetOwner.findOrCreate({
                 where: {email},
                 include: Pet,
-                defaults: {email, picture}
+                defaults: {email, picture, name, surname}
             })
             petOwner ? res.status(200).json(petOwner) : res.status(404).send('Creation failed')
         }

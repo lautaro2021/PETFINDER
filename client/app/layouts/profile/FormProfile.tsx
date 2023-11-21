@@ -58,8 +58,6 @@ export default function FormProfile({ data }: { data: ProfileType }) {
       });
   };
 
-  console.log(formData);
-
   if (!data) return <Loader />;
 
   return (
@@ -75,6 +73,7 @@ export default function FormProfile({ data }: { data: ProfileType }) {
           name="name"
           value={formData.name}
           onChange={handleFromData}
+          required
         />
         <Input
           placeholder="Inserte su apellido"
@@ -82,6 +81,7 @@ export default function FormProfile({ data }: { data: ProfileType }) {
           name="surname"
           value={formData.surname}
           onChange={handleFromData}
+          required
         />
         <Input
           placeholder="Inserte un teléfono de contacto"
@@ -90,6 +90,7 @@ export default function FormProfile({ data }: { data: ProfileType }) {
           name="phone"
           value={formData.phone}
           onChange={handleFromData}
+          required
         />
         <Input
           placeholder="Inserte su provincia"
@@ -111,6 +112,7 @@ export default function FormProfile({ data }: { data: ProfileType }) {
           name="email"
           value={formData.email}
           onChange={handleFromData}
+          disabled
         />
         <Textarea
           placeholder="Inserte información adicional"

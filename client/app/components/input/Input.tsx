@@ -11,6 +11,7 @@ function Input({
   value,
   disabled,
   accept,
+  required,
 }: {
   id?: string;
   type?: string;
@@ -21,6 +22,7 @@ function Input({
   value?: any;
   disabled?: boolean;
   accept?: any;
+  required?: boolean;
 }) {
   return (
     <div className={style.InputContainer}>
@@ -37,6 +39,7 @@ function Input({
         value={value}
         disabled={disabled}
         accept={accept}
+        required={required}
       />
     </div>
   );
