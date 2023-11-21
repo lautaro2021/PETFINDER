@@ -5,8 +5,9 @@ import InfoRow from "@/app/components/pet-card/InfoRow";
 
 export default async function PetProfile({params}:{params:{profileId:string}}){
   const petData = await getPetData(params.profileId);
-  const petOwner = petData.pet_owner
+  
   if(!petData) return redirect(`/pet-profile/add?newId=${params.profileId}`)
+  const petOwner = petData.pet_owner
 
   return (
     <main className={`main_container ${styles.MainPetProfile}`}>
@@ -26,7 +27,6 @@ export default async function PetProfile({params}:{params:{profileId:string}}){
             <div className={styles.PetOwnerInfo}>
               <label>Dueño</label>
               <h2>{petOwner?.name}</h2>
-              <InfoRow icon={2} text={petOwner?.phone} />
               <InfoRow icon={2} text={petOwner?.phone} />
             </div>
             <a className={styles.PetOwnerContactBtn}>
@@ -67,7 +67,7 @@ export default async function PetProfile({params}:{params:{profileId:string}}){
             </article>
             <article className={styles.PetInfoCard}>
               <label>Observaciones</label>
-              <p>{petData.veterinary}</p>
+              <p>{petData.info}</p>
             </article>
           </div>
         </div>

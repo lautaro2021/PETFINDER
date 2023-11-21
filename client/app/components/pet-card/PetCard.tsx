@@ -11,7 +11,7 @@ function PetCard({
   race,
   location,
 }: {
-  petId?: number;
+  petId?: string;
   profileImage?: string;
   name?: string;
   race?: string;

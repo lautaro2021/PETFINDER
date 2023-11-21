@@ -13,12 +13,14 @@ import Textarea from "@/app/components/textarea/Textarea";
 function PetProfileEditLayout({
   userId,
   petData,
+  petId,
 }: {
   userId?: number;
   petData?: PetType;
+  petId?: string,
 }) {
   const [formData, setFormData] = useState<PetType>({
-    id: petData?.id,
+    id: petData?.id || petId,
     name: petData?.name,
     picture: petData?.picture,
     gender: petData?.gender,

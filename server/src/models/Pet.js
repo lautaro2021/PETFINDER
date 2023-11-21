@@ -3,9 +3,8 @@ import { sequelize } from "../db/database.js";
 
 export const Pet = sequelize.define('pet', {
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         primaryKey: true,
-        autoIncrement: true
     },
     name: {
         type: DataTypes.STRING,
@@ -51,7 +50,7 @@ export const Pet = sequelize.define('pet', {
         type: DataTypes.STRING
     },
     info: {
-        type: DataTypes.STRING
+        type: DataTypes.TEXT
     }
 }, {
     timestamps: false

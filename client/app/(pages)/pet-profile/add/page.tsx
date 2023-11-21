@@ -7,7 +7,7 @@ async function AddPet({searchParams}:{searchParams: {newId?:string}}) {
 
   return (
     <main className="main_container">
-      {data && <PetProfileEditLayout userId={data.id} petData={{id: Number(searchParams?.newId)}}/>}
+      {data && <PetProfileEditLayout userId={data.id} petId={searchParams?.newId}/>}
     </main>
   );
 }
