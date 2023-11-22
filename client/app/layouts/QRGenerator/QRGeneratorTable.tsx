@@ -1,4 +1,5 @@
 import styles from "@/app/layouts/QRGenerator/QRGeneratorTable.module.css";
+import { IoMdDownload } from "react-icons/io";
 
 export default function QRGeneratorTable({
   data,
@@ -13,29 +14,12 @@ export default function QRGeneratorTable({
       <thead>
         <tr>
           <th>IDs</th>
-          <th>QR Image</th>
-          <th>QR URL</th>
-          <th>Download</th>
+          <th>Imagen QR</th>
+          <th>URL</th>
+          <th>Descargar</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>uusidsd--sd asd---sds-d-s-d</td>
-          <td>
-            <img src={""} style={{ height: 100 }} alt="QR Image" />
-          </td>
-          <td>https:// sadsad s,.com/asdsar</td>
-          <td>
-            <a
-              href={""}
-              download="Example-PDF-document"
-              target="_blank"
-              rel="noreferrer"
-            >
-              download
-            </a>
-          </td>
-        </tr>
         {data?.map((d) => {
           return (
             <tr>
@@ -51,7 +35,7 @@ export default function QRGeneratorTable({
                   target="_blank"
                   rel="noreferrer"
                 >
-                  download
+                  <IoMdDownload />
                 </a>
               </td>
             </tr>

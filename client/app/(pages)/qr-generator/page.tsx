@@ -117,28 +117,17 @@ export default function QRGenerator() {
       {!userActive ? (
         <QrForm handleSubmit={handleSubmit} />
       ) : (
-        <>
-          <div>
-            <button onClick={handleClickGenerator}>Generate 100 QR</button>
-            <button onClick={handleDownloadAllPage}>Download ALL PAGE</button>
-          </div>
+        <AdminPanel
+          data={dataQRs}
+          generateAction={handleClickGenerator}
+          downloadAction={handleDownloadAllPage}
+        >
           <PaginationButtons
             currentPage={currentPage}
             lastPage={lastPage}
             setCurrentPage={setCurrentPage}
           />
-          <QRGeneratorTable data={dataQRs} />
-          <PaginationButtons
-            currentPage={currentPage}
-            lastPage={lastPage}
-            setCurrentPage={setCurrentPage}
-          />
-          <AdminPanel
-            data={dataQRs}
-            generateAction={handleClickGenerator}
-            downloadAction={handleDownloadAllPage}
-          />
-        </>
+        </AdminPanel>
       )}
     </main>
   );
