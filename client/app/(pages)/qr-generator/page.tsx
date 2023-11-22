@@ -4,32 +4,37 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import JSZip from "jszip";
 import QrForm from "@/app/layouts/QRGenerator/form/QrForm";
+import { QRType } from "@/app/types/qr.type";
+import PaginationButtons from "@/app/layouts/QRGenerator/pagination/pagination";
 
-const NEXT_PUBLIC_TOKEN_QR_GENERATOR =
-  process.env.NEXT_PUBLIC_TOKEN_QR_GENERATOR;
+const NEXT_PUBLIC_TOKEN_QR_GENERATOR = process.env.NEXT_PUBLIC_TOKEN_QR_GENERATOR;
 const NEXT_PUBLIC_QR_GEN_PASS = process.env.NEXT_PUBLIC_QR_GEN_PASS;
 
 export default function QRGenerator() {
   const [userActive, setUserActive] = useState(false);
-  const [dataQRs, setDataQRs] = useState<
-    {
-      IDpet: string;
-      QRurl: string;
-    }[]
-  >([]);
+  const [dataQRs, setDataQRs] = useState<QRType[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1);
 
   useEffect(() => {
-    // GET from DB first 100 QRs
-  }, []);
+    const getAllQRs = async () =>{
+      const dataQRs = await axios.get(`http://localhost:3001/qr-generator?page=${currentPage}`).then(res => res.data);
+      setDataQRs(dataQRs.data);
+      setLastPage(dataQRs.pageInfo?.totalPages);
+    }
+    getAllQRs();
+  }, [currentPage]);
 
-  const handleClick = () => {
-    axios.get(`https://www.uuidgenerator.net/api/version4/1`).then((res) => {
+  const handleClickGenerator = async () => {
+    try {
+      const qrDataArray: QRType[] = [];
+      const res = await axios.get(`https://www.uuidgenerator.net/api/version4/1`);
       if (res.data) {
         const uuids = res.data?.split("\r\n");
-        for (const id of uuids) {
-          try {
-            axios
-              .post(
+        await Promise.all(
+          uuids.map(async (id:string) => {
+            try {
+              const qrResponse = await axios.post(
                 `https://www.qrtiger.com/api/qr/static`,
                 {
                   size: 500,
@@ -43,19 +48,22 @@ export default function QRGenerator() {
                     Authorization: `Bearer ${NEXT_PUBLIC_TOKEN_QR_GENERATOR}`,
                   },
                 }
-              )
-              .then((res) => {
-                setDataQRs([...dataQRs, { IDpet: id, QRurl: res.data.url }]);
-              });
-          } catch (error) {
-            console.error(
-              `Error al obtener la respuesta para el UUID ${id}:`,
-              error
-            );
-          }
+              );
+              qrDataArray.push({ IDpet: id, QRurl: qrResponse.data.url });
+            } catch (error) {
+              console.error(`Error al obtener la respuesta para el UUID ${id}:`, error);
+            }
+          })
+        );
+
+        if (qrDataArray.length > 0) {
+          const response = await axios.post('http://localhost:3001/qr-generator', qrDataArray);
+          setDataQRs([...response.data, ...dataQRs]);
         }
       }
-    });
+    } catch (e) {
+      console.error('Error al obtener UUIDs:', e);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -91,12 +99,6 @@ export default function QRGenerator() {
       console.error("Error al descargar archivos:", error);
     }
   };
-  // console.log("DATA QRS: ", dataQRs);
-  // ========== Verificar que la ID no exista en la DB
-  //
-  // traernos solo las que no existes de la DB e iterar esas
-  //
-  //
 
   return (
     <section>
@@ -105,10 +107,12 @@ export default function QRGenerator() {
       ) : (
         <>
           <div>
-            <button onClick={handleClick}>Generate 100 QR</button>
+            <button onClick={handleClickGenerator}>Generate 100 QR</button>
             <button onClick={handleDownloadAllPage}>Download ALL PAGE</button>
           </div>
+          <PaginationButtons currentPage={currentPage} lastPage={lastPage} setCurrentPage={setCurrentPage}/>
           <QRGeneratorTable data={dataQRs} />
+          <PaginationButtons currentPage={currentPage} lastPage={lastPage} setCurrentPage={setCurrentPage}/>
         </>
       )}
     </section>

@@ -4,6 +4,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import petOwnerRoutes from '../routes/petOwner.routes.js'
 import petRoutes from '../routes/pet.routes.js'
+import qrRoutes from '../routes/qr.router.js'
 
 const app = express();
 
@@ -15,5 +16,6 @@ app.use(cors({origin: '*', methods: ['GET', 'POST', 'PUT', 'DELETE'], allowedHea
 
 app.use(petOwnerRoutes);
 app.use(petRoutes)
+app.use(qrRoutes)
 
 export default app;
