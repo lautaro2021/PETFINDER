@@ -1,9 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import style from "./profile-image.module.css";
 import { MdEdit } from "react-icons/md";
-import { IoCloseOutline } from "react-icons/io5";
-import Input from "../input/Input";
 
 function ProfileImage({
   src,
@@ -12,6 +10,8 @@ function ProfileImage({
   src?: string;
   handler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
+  console.log(src);
+
   return (
     <>
       <figure className={style.figure}>

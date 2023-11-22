@@ -9,6 +9,7 @@ import axios from "axios";
 import type { PetType } from "@/app/types/pet.type";
 import ProfileImage from "@/app/components/profile-image/ProfileImage";
 import Textarea from "@/app/components/textarea/Textarea";
+import { uploadImage } from "@/app/utils/uploadCloudinaryImage";
 
 function PetProfileEditLayout({
   userId,
@@ -37,8 +38,8 @@ function PetProfileEditLayout({
     info: petData?.info,
   });
 
-  const formRequiredData = ["name", "gender", "race", "age"];
-  const validate = formRequiredData.every(
+  const formRequiredFields = ["name", "gender", "race", "age"];
+  const validate = formRequiredFields.every(
     (key) => formData[key as keyof PetType]
   );
 
@@ -51,14 +52,18 @@ function PetProfileEditLayout({
     });
   };
 
-  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImage = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      const file = URL.createObjectURL(e.target.files[0]);
+      const file = e.target.files[0];
 
-      setFormData({
-        ...formData,
-        picture: file,
-      });
+      const imageUrl = await uploadImage(file);
+
+      if (imageUrl) {
+        setFormData({
+          ...formData,
+          picture: imageUrl,
+        });
+      }
     }
   };
 

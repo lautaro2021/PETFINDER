@@ -14,8 +14,6 @@ function AdminPanel({
   downloadAction: () => void;
   children: React.ReactNode;
 }) {
-  console.log(data.length);
-
   return (
     <section className={style.section}>
       <div className={style.button_container}>
