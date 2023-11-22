@@ -1,0 +1,15 @@
+.section{
+    width: 100%;
+    min-height: 700px;
+    padding: 70px;
+    border-radius: 20px;
+    background-color: #F5F5F5;
+    position: relative;
+}
+.button_container{
+    padding-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}

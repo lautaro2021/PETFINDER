@@ -6,8 +6,10 @@ import JSZip from "jszip";
 import QrForm from "@/app/layouts/QRGenerator/form/QrForm";
 import { QRType } from "@/app/types/qr.type";
 import PaginationButtons from "@/app/layouts/QRGenerator/pagination/pagination";
+import AdminPanel from "@/app/layouts/QRGenerator/admin-panel/AdminPanel";
 
-const NEXT_PUBLIC_TOKEN_QR_GENERATOR = process.env.NEXT_PUBLIC_TOKEN_QR_GENERATOR;
+const NEXT_PUBLIC_TOKEN_QR_GENERATOR =
+  process.env.NEXT_PUBLIC_TOKEN_QR_GENERATOR;
 const NEXT_PUBLIC_QR_GEN_PASS = process.env.NEXT_PUBLIC_QR_GEN_PASS;
 
 export default function QRGenerator() {
@@ -17,22 +19,26 @@ export default function QRGenerator() {
   const [lastPage, setLastPage] = useState(1);
 
   useEffect(() => {
-    const getAllQRs = async () =>{
-      const dataQRs = await axios.get(`http://localhost:3001/qr-generator?page=${currentPage}`).then(res => res.data);
+    const getAllQRs = async () => {
+      const dataQRs = await axios
+        .get(`http://localhost:3001/qr-generator?page=${currentPage}`)
+        .then((res) => res.data);
       setDataQRs(dataQRs.data);
       setLastPage(dataQRs.pageInfo?.totalPages);
-    }
+    };
     getAllQRs();
   }, [currentPage]);
 
   const handleClickGenerator = async () => {
     try {
       const qrDataArray: QRType[] = [];
-      const res = await axios.get(`https://www.uuidgenerator.net/api/version4/1`);
+      const res = await axios.get(
+        `https://www.uuidgenerator.net/api/version4/1`
+      );
       if (res.data) {
         const uuids = res.data?.split("\r\n");
         await Promise.all(
-          uuids.map(async (id:string) => {
+          uuids.map(async (id: string) => {
             try {
               const qrResponse = await axios.post(
                 `https://www.qrtiger.com/api/qr/static`,
@@ -51,18 +57,24 @@ export default function QRGenerator() {
               );
               qrDataArray.push({ IDpet: id, QRurl: qrResponse.data.url });
             } catch (error) {
-              console.error(`Error al obtener la respuesta para el UUID ${id}:`, error);
+              console.error(
+                `Error al obtener la respuesta para el UUID ${id}:`,
+                error
+              );
             }
           })
         );
 
         if (qrDataArray.length > 0) {
-          const response = await axios.post('http://localhost:3001/qr-generator', qrDataArray);
+          const response = await axios.post(
+            "http://localhost:3001/qr-generator",
+            qrDataArray
+          );
           setDataQRs([...response.data, ...dataQRs]);
         }
       }
     } catch (e) {
-      console.error('Error al obtener UUIDs:', e);
+      console.error("Error al obtener UUIDs:", e);
     }
   };
 
@@ -101,7 +113,7 @@ export default function QRGenerator() {
   };
 
   return (
-    <section>
+    <main className="main_container">
       {!userActive ? (
         <QrForm handleSubmit={handleSubmit} />
       ) : (
@@ -110,11 +122,24 @@ export default function QRGenerator() {
             <button onClick={handleClickGenerator}>Generate 100 QR</button>
             <button onClick={handleDownloadAllPage}>Download ALL PAGE</button>
           </div>
-          <PaginationButtons currentPage={currentPage} lastPage={lastPage} setCurrentPage={setCurrentPage}/>
+          <PaginationButtons
+            currentPage={currentPage}
+            lastPage={lastPage}
+            setCurrentPage={setCurrentPage}
+          />
           <QRGeneratorTable data={dataQRs} />
-          <PaginationButtons currentPage={currentPage} lastPage={lastPage} setCurrentPage={setCurrentPage}/>
+          <PaginationButtons
+            currentPage={currentPage}
+            lastPage={lastPage}
+            setCurrentPage={setCurrentPage}
+          />
+          <AdminPanel
+            data={dataQRs}
+            generateAction={handleClickGenerator}
+            downloadAction={handleDownloadAllPage}
+          />
         </>
       )}
-    </section>
+    </main>
   );
 }

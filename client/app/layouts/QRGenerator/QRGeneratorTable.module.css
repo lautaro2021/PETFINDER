@@ -1,13 +1,12 @@
 .QRGeneratorTable{
   /* background-color: red; */
   width: 100%;
-  border: 1px solid var(--color-grey);
+  background-color: white;
   border-collapse: collapse;
 }
 .QRGeneratorTable tr, .QRGeneratorTable th, .QRGeneratorTable td{
-  border: 1px solid var(--color-grey);
   padding: 5px 10px;
 }
 .QRGeneratorTable tbody tr:nth-child(even){
-  background-color: var(--bg-color-grey);
+  background-color: rgb(220, 220, 220);
 }
