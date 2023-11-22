@@ -13,8 +13,8 @@ export default function QRGeneratorTable({
     <table className={`${styles.QRGeneratorTable}`}>
       <thead>
         <tr>
-          <th>IDs</th>
           <th>Imagen QR</th>
+          <th>ID</th>
           <th>URL</th>
           <th>Descargar</th>
         </tr>
@@ -23,10 +23,10 @@ export default function QRGeneratorTable({
         {data?.map((d) => {
           return (
             <tr>
-              <td>{d.IDpet}</td>
               <td>
                 <img src={d.QRurl} style={{ height: 100 }} />
               </td>
+              <td>{d.IDpet}</td>
               <td>{d.QRurl}</td>
               <td>
                 <a

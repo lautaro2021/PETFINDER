@@ -20,6 +20,7 @@ export const getAllQRs = async (req, res) => {
         totalResults: count,
         totalPages: totalPages,
         currentPage: parseInt(page),
+        pageSize
       },
     });
   } catch (error) {

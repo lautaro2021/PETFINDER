@@ -9,7 +9,7 @@
 .button_container{
     padding-bottom: 25px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     gap: 50px;
 }

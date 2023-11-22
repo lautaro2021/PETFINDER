@@ -6,7 +6,6 @@ import QrForm from "@/app/layouts/QRGenerator/form/QrForm";
 import { QRType } from "@/app/types/qr.type";
 import PaginationButtons from "@/app/layouts/QRGenerator/pagination/pagination";
 import AdminPanel from "@/app/layouts/QRGenerator/admin-panel/AdminPanel";
-import Loader from "@/app/components/loader/Loader";
 
 const NEXT_PUBLIC_TOKEN_QR_GENERATOR =
   process.env.NEXT_PUBLIC_TOKEN_QR_GENERATOR;
@@ -14,17 +13,21 @@ const NEXT_PUBLIC_QR_GEN_PASS = process.env.NEXT_PUBLIC_QR_GEN_PASS;
 
 export default function QRGenerator() {
   const [userActive, setUserActive] = useState(false);
-  const [dataQRs, setDataQRs] = useState<QRType[]>([]);
+  const [dataQRs, setDataQRs] = useState<{ qr: QRType[]; totalQR: number }>({
+    qr: [],
+    totalQR: 0,
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [qrCuantity, setQrCuantity] = useState("1");
 
   useEffect(() => {
     const getAllQRs = async () => {
       const dataQRs = await axios
         .get(`http://localhost:3001/qr-generator?page=${currentPage}`)
         .then((res) => res.data);
-      setDataQRs(dataQRs.data);
+      setDataQRs({ qr: dataQRs.data, totalQR: dataQRs.pageInfo?.totalResults });
       setLastPage(dataQRs.pageInfo?.totalPages);
     };
     getAllQRs();
@@ -35,7 +38,7 @@ export default function QRGenerator() {
     try {
       const qrDataArray: QRType[] = [];
       const res = await axios.get(
-        `https://www.uuidgenerator.net/api/version4/20`
+        `https://www.uuidgenerator.net/api/version4/${qrCuantity}`
       );
       if (res.data) {
         const uuids = res.data?.split("\r\n");
@@ -72,7 +75,10 @@ export default function QRGenerator() {
             "http://localhost:3001/qr-generator",
             qrDataArray
           );
-          setDataQRs([...response.data, ...dataQRs]);
+          setDataQRs({
+            ...dataQRs,
+            qr: [...response.data, ...dataQRs?.qr],
+          });
           setIsLoading(false);
         }
       }
@@ -83,8 +89,8 @@ export default function QRGenerator() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (e.currentTarget.elements[0].value === NEXT_PUBLIC_QR_GEN_PASS)
-      setUserActive(true);
+    const inputElement = e.currentTarget.elements[0] as HTMLInputElement;
+    if (inputElement.value === NEXT_PUBLIC_QR_GEN_PASS) setUserActive(true);
   };
 
   const handleDownloadAllPage = async () => {
@@ -92,7 +98,7 @@ export default function QRGenerator() {
       const zip = new JSZip();
 
       await Promise.all(
-        dataQRs.map(async (d) => {
+        dataQRs?.qr.map(async (d) => {
           const response = await axios.get(d.QRurl, { responseType: "blob" });
           const blob = new Blob([response.data], {
             type: "application/octet-stream",
@@ -115,27 +121,31 @@ export default function QRGenerator() {
     }
   };
 
+  const handleQrCuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQrCuantity(e.target.value);
+  };
+
   return (
     <main className="main_container">
       {!userActive ? (
         <QrForm handleSubmit={handleSubmit} />
       ) : (
         <>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <AdminPanel
-              data={dataQRs}
-              generateAction={handleClickGenerator}
-              downloadAction={handleDownloadAllPage}
-            >
-              <PaginationButtons
-                currentPage={currentPage}
-                lastPage={lastPage}
-                setCurrentPage={setCurrentPage}
-              />
-            </AdminPanel>
-          )}
+          <AdminPanel
+            data={dataQRs.qr}
+            generateAction={handleClickGenerator}
+            downloadAction={handleDownloadAllPage}
+            isLoading={isLoading}
+            handleInput={handleQrCuantity}
+            inputValue={qrCuantity}
+            totalQr={dataQRs.totalQR}
+          >
+            <PaginationButtons
+              currentPage={currentPage}
+              lastPage={lastPage}
+              setCurrentPage={setCurrentPage}
+            />
+          </AdminPanel>
         </>
       )}
     </main>

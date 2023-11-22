@@ -10,6 +10,7 @@ import type { PetType } from "@/app/types/pet.type";
 import ProfileImage from "@/app/components/profile-image/ProfileImage";
 import Textarea from "@/app/components/textarea/Textarea";
 import { uploadImage } from "@/app/utils/uploadCloudinaryImage";
+import { useRouter } from "next/navigation";
 
 function PetProfileEditLayout({
   userId,
@@ -20,6 +21,7 @@ function PetProfileEditLayout({
   petData?: PetType;
   petId?: string;
 }) {
+  const router = useRouter();
   const [formData, setFormData] = useState<PetType>({
     id: petData?.id || petId,
     name: petData?.name,
@@ -85,6 +87,7 @@ function PetProfileEditLayout({
             title: "Mascota creada con exito",
             icon: "success",
           });
+          router.push("/pet-profile");
         })
         .catch((error) => {
           Swal.fire({
@@ -101,6 +104,7 @@ function PetProfileEditLayout({
             title: "Mascota editada con exito",
             icon: "success",
           });
+          router.push("/pet-profile");
         })
         .catch((error) => {
           Swal.fire({
@@ -116,7 +120,7 @@ function PetProfileEditLayout({
     <section className={style.section}>
       <p>Información de mi mascota</p>
       <ProfileImage src={formData.picture} handler={handleImage} />
-      <form action="POST">
+      <form>
         <Input
           placeholder="Inserte el Nombre"
           label="Nombre(*)"
