@@ -23,6 +23,7 @@ export const getPet = async (req, res) => {
 }
 export const createPet = async (req, res) => {
     const data = req.body;
+
     try {
         const newPet = await Pet.create(data)
         newPet ? res.status(200).json(newPet) : res.status(404).send('Creation error');

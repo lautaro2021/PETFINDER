@@ -3,7 +3,7 @@ import { sequelize } from "../db/database.js";
 
 export const Pet = sequelize.define('pet', {
     id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING,
         primaryKey: true,
     },
     name: {

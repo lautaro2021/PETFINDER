@@ -3,7 +3,7 @@ import { QR } from '../models/Qr.js';
 export const getAllQRs = async (req, res) => {
   try {
     const { page = 1 } = req.query;
-    const pageSize = 2;
+    const pageSize = 25;
     const offset = (page - 1) * pageSize;
 
     const { rows, count } = await QR.findAndCountAll({

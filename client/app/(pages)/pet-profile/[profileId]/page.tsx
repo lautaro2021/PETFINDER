@@ -1,20 +1,28 @@
 import { getPetData } from "@/app/utils/getPetData";
-import { redirect } from 'next/navigation'
-import styles from '@/app/layouts/pet-profile/pet-profile.module.css'
+import { redirect } from "next/navigation";
+import styles from "@/app/layouts/pet-profile/pet-profile.module.css";
 import InfoRow from "@/app/components/pet-card/InfoRow";
 
-export default async function PetProfile({params}:{params:{profileId:string}}){
+export default async function PetProfile({
+  params,
+}: {
+  params: { profileId: string };
+}) {
   const petData = await getPetData(params.profileId);
-  
-  if(!petData) return redirect(`/pet-profile/add?newId=${params.profileId}`)
-  const petOwner = petData.pet_owner
+
+  if (!petData) return redirect(`/pet-profile/add?newId=${params.profileId}`);
+  const petOwner = petData.pet_owner;
 
   return (
-    <main className={`main_container ${styles.MainPetProfile}`}>
+    <main className="main_container">
       <section className={styles.PetProfileSection}>
         <div className={styles.PetProfileHeader}>
           <div className={styles.PetProfileHeaderData}>
-            <img src={petData.picture} alt="Pet Profile Photo" className={styles.PetProfileImg}/>
+            <img
+              src={petData.picture}
+              alt="Pet Profile Photo"
+              className={styles.PetProfileImg}
+            />
             <div>
               <h1>{petData.name}</h1>
               <div className={styles.RowInfoContainer}>
@@ -29,9 +37,7 @@ export default async function PetProfile({params}:{params:{profileId:string}}){
               <h2>{petOwner?.name}</h2>
               <InfoRow icon={2} text={petOwner?.phone} />
             </div>
-            <a className={styles.PetOwnerContactBtn}>
-              Contactar
-            </a>
+            <a className={styles.PetOwnerContactBtn}>Contactar</a>
           </div>
         </div>
         <div className={styles.PetProfileInfo}>
@@ -55,11 +61,15 @@ export default async function PetProfile({params}:{params:{profileId:string}}){
             </article>
             <article className={styles.PetInfoCard}>
               <label>¿Posee enfermedades?</label>
-              <p>{petData.disease} <br></br> {petData.diseaseType}</p>
+              <p>
+                {petData.disease} <br></br> {petData.diseaseType}
+              </p>
             </article>
             <article className={styles.PetInfoCard}>
               <label>¿Se encuentra en tratamiento?</label>
-              <p>{petData.treatment} <br></br> {petData.treatmentType}</p>
+              <p>
+                {petData.treatment} <br></br> {petData.treatmentType}
+              </p>
             </article>
             <article className={styles.PetInfoCard}>
               <label>Veterinario amigo</label>
@@ -73,5 +83,5 @@ export default async function PetProfile({params}:{params:{profileId:string}}){
         </div>
       </section>
     </main>
-  )
+  );
 }

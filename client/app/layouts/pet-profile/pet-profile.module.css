@@ -76,16 +76,13 @@
 }
 /* Pet Profile Details */
 
-.MainPetProfile{
-    background-color: var(--bg-color-grey);
-    align-items: flex-start;
-    min-height: 100vh;
-}
-
 .PetProfileSection{
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+    width: 100%;
+    min-height: 700px;
+    padding: 70px;
+    border-radius: 20px;
+    background-color: #F5F5F5;
+    position: relative;
 }
 .PetProfileHeader{
     display: flex;
@@ -161,6 +158,7 @@
 
 
 .PetProfileInfo{
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     gap: 15px;

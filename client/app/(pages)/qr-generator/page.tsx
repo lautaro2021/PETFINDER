@@ -1,5 +1,4 @@
 "use client";
-import QRGeneratorTable from "@/app/layouts/QRGenerator/QRGeneratorTable";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import JSZip from "jszip";
@@ -7,6 +6,7 @@ import QrForm from "@/app/layouts/QRGenerator/form/QrForm";
 import { QRType } from "@/app/types/qr.type";
 import PaginationButtons from "@/app/layouts/QRGenerator/pagination/pagination";
 import AdminPanel from "@/app/layouts/QRGenerator/admin-panel/AdminPanel";
+import Loader from "@/app/components/loader/Loader";
 
 const NEXT_PUBLIC_TOKEN_QR_GENERATOR =
   process.env.NEXT_PUBLIC_TOKEN_QR_GENERATOR;
@@ -17,6 +17,7 @@ export default function QRGenerator() {
   const [dataQRs, setDataQRs] = useState<QRType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getAllQRs = async () => {
@@ -30,10 +31,11 @@ export default function QRGenerator() {
   }, [currentPage]);
 
   const handleClickGenerator = async () => {
+    setIsLoading(true);
     try {
       const qrDataArray: QRType[] = [];
       const res = await axios.get(
-        `https://www.uuidgenerator.net/api/version4/1`
+        `https://www.uuidgenerator.net/api/version4/20`
       );
       if (res.data) {
         const uuids = res.data?.split("\r\n");
@@ -71,6 +73,7 @@ export default function QRGenerator() {
             qrDataArray
           );
           setDataQRs([...response.data, ...dataQRs]);
+          setIsLoading(false);
         }
       }
     } catch (e) {
@@ -117,17 +120,23 @@ export default function QRGenerator() {
       {!userActive ? (
         <QrForm handleSubmit={handleSubmit} />
       ) : (
-        <AdminPanel
-          data={dataQRs}
-          generateAction={handleClickGenerator}
-          downloadAction={handleDownloadAllPage}
-        >
-          <PaginationButtons
-            currentPage={currentPage}
-            lastPage={lastPage}
-            setCurrentPage={setCurrentPage}
-          />
-        </AdminPanel>
+        <>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <AdminPanel
+              data={dataQRs}
+              generateAction={handleClickGenerator}
+              downloadAction={handleDownloadAllPage}
+            >
+              <PaginationButtons
+                currentPage={currentPage}
+                lastPage={lastPage}
+                setCurrentPage={setCurrentPage}
+              />
+            </AdminPanel>
+          )}
+        </>
       )}
     </main>
   );
