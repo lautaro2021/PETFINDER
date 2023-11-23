@@ -77,8 +77,10 @@ export default function QRGenerator() {
           );
           setDataQRs({
             ...dataQRs,
-            qr: [...response.data, ...dataQRs?.qr],
+            qr: [...response?.data],
           });
+          setCurrentPage(1);
+          setLastPage(prev => prev + 1);
           setIsLoading(false);
         }
       }
@@ -139,6 +141,7 @@ export default function QRGenerator() {
             handleInput={handleQrCuantity}
             inputValue={qrCuantity}
             totalQr={dataQRs.totalQR}
+            totalPage={lastPage}
           >
             <PaginationButtons
               currentPage={currentPage}

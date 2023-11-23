@@ -14,6 +14,7 @@ function AdminPanel({
   handleInput,
   inputValue,
   totalQr,
+  totalPage
 }: {
   data: { IDpet: string; QRurl: string }[];
   generateAction: () => void;
@@ -23,6 +24,7 @@ function AdminPanel({
   handleInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
   inputValue: string;
   totalQr: number;
+  totalPage: number;
 }) {
   return (
     <section className={style.section}>
@@ -45,7 +47,10 @@ function AdminPanel({
         <Loader />
       ) : (
         <>
-          <p>Cantidad total de QR: {`${totalQr}`}</p>
+          <div className={style.pagination_data_container}>
+            <p>Cantidad total de QR: {`${totalQr}`}</p>
+            <p>Paginas totales: {`${totalPage}`}</p>
+          </div>
           <QRGeneratorTable data={data} />
           <div className={style.pagination_container}>{children}</div>
         </>
