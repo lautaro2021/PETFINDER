@@ -47,12 +47,22 @@ export default function FormProfile({ data }: { data: ProfileType }) {
         Swal.fire({
           title: "Cambios guardados con exito",
           icon: "success",
+          iconColor: "#3C8B96",
+          customClass: {
+            confirmButton: `${style.confirm_button}`,
+            popup: `${style.notification_container}`,
+          },
         });
       })
       .catch((error) => {
         Swal.fire({
           title: "Error al guardar  tus cambios",
           icon: "error",
+          iconColor: "#3C8B96",
+          customClass: {
+            confirmButton: `${style.confirm_button}`,
+            popup: `${style.notification_container}`,
+          },
         });
         throw new Error(error);
       });

@@ -86,6 +86,11 @@ function PetProfileEditLayout({
           Swal.fire({
             title: "Mascota creada con exito",
             icon: "success",
+            iconColor: "#3C8B96",
+            customClass: {
+              confirmButton: `${style.confirm_button}`,
+              popup: `${style.notification_container}`,
+            },
           });
           router.push("/pet-profile");
         })
@@ -93,6 +98,11 @@ function PetProfileEditLayout({
           Swal.fire({
             title: "Error al crear tu mascota",
             icon: "error",
+            iconColor: "#3C8B96",
+            customClass: {
+              confirmButton: `${style.confirm_button}`,
+              popup: `${style.notification_container}`,
+            },
           });
           throw new Error(error);
         });
@@ -103,6 +113,11 @@ function PetProfileEditLayout({
           Swal.fire({
             title: "Mascota editada con exito",
             icon: "success",
+            iconColor: "#3C8B96",
+            customClass: {
+              confirmButton: `${style.confirm_button}`,
+              popup: `${style.notification_container}`,
+            },
           });
           router.push("/pet-profile");
         })
@@ -110,6 +125,11 @@ function PetProfileEditLayout({
           Swal.fire({
             title: "Error al crear tu mascota",
             icon: "error",
+            iconColor: "#3C8B96",
+            customClass: {
+              confirmButton: `${style.confirm_button}`,
+              popup: `${style.notification_container}`,
+            },
           });
           throw new Error(error);
         });

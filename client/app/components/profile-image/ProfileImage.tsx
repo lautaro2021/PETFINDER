@@ -10,8 +10,6 @@ function ProfileImage({
   src?: string;
   handler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
-  console.log(src);
-
   return (
     <>
       <figure className={style.figure}>
