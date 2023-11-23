@@ -15,8 +15,15 @@ function ProfileImage({
   return (
     <>
       <figure className={style.figure}>
-        <input type="file" accept="image/*" onChange={handler}></input>
-        <img src={src} className={style.primary_image} />
+        <input
+          type="file"
+          accept=".png, .jpg, .jpeg"
+          onChange={handler}
+        ></input>
+        <img
+          src={src ? src : "/assets/images/default_image.png"}
+          className={style.primary_image}
+        />
         <div className={style.icon_container}>
           <MdEdit />
         </div>
