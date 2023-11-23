@@ -14,8 +14,8 @@ export default function QRGeneratorTable({
       <thead>
         <tr>
           <th>Imagen QR</th>
-          <th>ID</th>
-          <th>URL</th>
+          <th className={styles.id}>ID</th>
+          <th className={styles.url}>URL</th>
           <th>Descargar</th>
         </tr>
       </thead>
@@ -26,8 +26,8 @@ export default function QRGeneratorTable({
               <td>
                 <img src={d.QRurl} style={{ height: 100 }} />
               </td>
-              <td>{d.IDpet}</td>
-              <td>{d.QRurl}</td>
+              <td className={styles.id}>{d.IDpet}</td>
+              <td className={styles.url}>{d.QRurl}</td>
               <td>
                 <a
                   href={d.QRurl}

@@ -37,3 +37,20 @@
 .pagination_container div button:hover{
     background-color: #d1d1d1;
 }
+
+@media screen and (max-width: 1000px){
+    .button_container{
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 900px){
+    .section{
+        padding: 70px 30px;
+    }
+}
+@media screen and (max-width: 700px){
+    .section{
+        padding: 30px 0px 0px 0px;
+        background-color: white;
+    }
+}

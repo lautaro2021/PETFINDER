@@ -93,8 +93,8 @@
     padding-top: 20px;
 }
 .PetProfileHeader .PetProfileImg{
-    width: 75px;
-    height: 75px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -106,7 +106,7 @@
     height: fit-content;
 }
 .PetProfileHeaderData h1{
-    font-size: 22px;
+    font-size: 25px;
     font-weight: 600;
 }
 .RowInfoContainer{
@@ -124,7 +124,7 @@
     -moz-filter: invert(50%);
 }
 .RowInfoContainer p, .PetOwnerInfo p{
-    font-size: 12px;
+    font-size: 13px;
     color: var(--color-grey);
 }
 
@@ -139,20 +139,20 @@
     border-radius: 15px;
 }
 .PetOwnerInfo label{
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 13px;
+    font-weight: 600;
 }
 .PetOwnerInfo h2{
-    font-size: 17px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 600;
 }
 .PetOwnerDataCard .PetOwnerContactBtn{
     cursor: pointer;
     color: var(--color-white);
     background-color: var(--bg-color-primary);
     padding: 25px 35px;
-    border-radius: 10px;
-    font-size: 12px;
+    border-radius: 12px;
+    font-size: 14px;
 }
 
 
@@ -180,15 +180,39 @@
 }
 .PetInfoCard label{
     color: var(--color-grey);
-    font-size: 11px;
+    font-size: 13px;
 }
 .PetInfoCard p{
     margin-top: 5px;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
 }
 
 
+@media (width < 700px){
+    .PetProfileSection{
+        padding: 30px 0px 0px 0px;
+        background-color: white;
+    }
+    .PetInfoCard{
+        background-color: var(--color-white);
+        min-height: 100px;
+        padding: 15px 20px;
+        border-radius: 15px;
+        grid-column: span 2;
+        border: 1px solid #e1e1e1;
+    }
+    .PetOwnerDataCard{
+        background-color: var(--color-white);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 15px 20px;
+        border-radius: 15px;
+        border: 1px solid #e1e1e1;
+    }
+}
 @media (width > 768px){
     .PetProfileHeaderData{
         align-items: center;
@@ -214,7 +238,8 @@
         height: 125px;
     }
     .PetProfileHeaderData h1{
-        font-size: 32px;
+        font-size: 40px;
+        font-weight: 600;
     }
     .RowInfoContainer{
         flex-direction: row;
@@ -225,14 +250,22 @@
         height: 19px !important;
     }
     .RowInfoContainer p, .PetOwnerInfo p{
-        font-size: 16px;
+        font-size: 20px;
+    }
+    .PetOwnerInfo label{
+        font-size: 18px;
+        font-weight: 400;
+    }
+    .PetOwnerInfo h2{
+        font-size: 25px;
     }
     .PetProfileInfo h4{
-        font-size: 22px;
+        font-size: 25px;
+        font-weight: 600;
     }
     .PetOwnerDataCard .PetOwnerContactBtn{
         padding: 20px 35px;
-        font-size: 16px;
+        font-size: 20px;
     }
     .PetInfoCard{
         min-height: 150px;
@@ -242,10 +275,11 @@
         grid-column: span 1;
     }
     .PetInfoCard label{
-        font-size: 15px;
+        font-size: 18px;
     }
     .PetInfoCard p{
         margin-top: 13px;
-        font-size: 16px;
+        font-size: 20px;
+        font-weight: 600;
     }
 }
