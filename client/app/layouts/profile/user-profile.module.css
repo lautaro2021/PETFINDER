@@ -36,6 +36,14 @@
     font-size: clamp(13px, 2vw, 19px);
     grid-area: 5 / 2 / 6 / 3;
 }
+.confirm_button{
+    background-color: var(--bg-color-primary) !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+.notification_container{
+    border-radius: 20px !important;
+}
 @media screen and (max-width: 1000px){
     .section img{
         width: 100px;
