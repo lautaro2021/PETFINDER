@@ -1,7 +1,7 @@
 import { getPetData } from "@/app/utils/getPetData";
-import { redirect } from "next/navigation";
 import styles from "@/app/layouts/pet-profile/pet-profile.module.css";
 import InfoRow from "@/app/components/pet-card/InfoRow";
+import RedirectPofilePet from "./redirect";
 
 export default async function PetProfile({
   params,
@@ -10,7 +10,9 @@ export default async function PetProfile({
 }) {
   const petData = await getPetData(params.profileId);
 
-  if (!petData) return redirect(`/pet-profile/add?newId=${params.profileId}`);
+  if (!petData) {
+    return <RedirectPofilePet profileId={params.profileId}/>;
+  };
   const petOwner = petData.pet_owner;
 
   return (
