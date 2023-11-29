@@ -20,7 +20,7 @@ export default function FormProfile({ data }: { data: ProfileType }) {
     email: data?.email,
   });
 
-  const formRequiredData = ["name", "surname", "phone"];
+  const formRequiredData = ["name", "surname", "phone", "province", "location"];
   const validate = formRequiredData.every(
     (key) => formData[key as keyof ProfileType]
   );
@@ -104,14 +104,14 @@ export default function FormProfile({ data }: { data: ProfileType }) {
         />
         <Input
           placeholder="Inserte su provincia"
-          label="Provincia"
+          label="Provincia(*)"
           name="province"
           value={formData.province}
           onChange={handleFromData}
         />
         <Input
           placeholder="Inserte su localidad"
-          label="Localidad"
+          label="Localidad(*)"
           name="location"
           value={formData.location}
           onChange={handleFromData}

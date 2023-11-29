@@ -8,6 +8,12 @@ export const Pet = sequelize.define('pet', {
     },
     name: {
         type: DataTypes.STRING,
+    },
+    surname: {
+        type: DataTypes.STRING,
+    },
+    nickname: {
+        type: DataTypes.STRING,
         allowNull: false,
     },
     picture: {

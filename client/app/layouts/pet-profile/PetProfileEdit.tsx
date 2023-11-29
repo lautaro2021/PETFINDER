@@ -25,6 +25,8 @@ function PetProfileEditLayout({
   const [formData, setFormData] = useState<PetType>({
     id: petData?.id || petId,
     name: petData?.name,
+    surname: petData?.surname,
+    nickname: petData?.nickname,
     picture: petData?.picture,
     gender: petData?.gender,
     age: petData?.age,
@@ -40,7 +42,7 @@ function PetProfileEditLayout({
     info: petData?.info,
   });
 
-  const formRequiredFields = ["name", "gender", "race", "age"];
+  const formRequiredFields = ["nickname", "gender", "race", "age"];
   const validate = formRequiredFields.every(
     (key) => formData[key as keyof PetType]
   );
@@ -142,10 +144,24 @@ function PetProfileEditLayout({
       <ProfileImage src={formData.picture} handler={handleImage} />
       <form>
         <Input
-          placeholder="Inserte el Nombre"
-          label="Nombre(*)"
+          placeholder="Inserte el nombre"
+          label="Nombre"
           name="name"
           value={formData.name}
+          onChange={handleForm}
+        />
+        <Input
+          placeholder="Inserte el apellido"
+          label="Apellido"
+          name="surname"
+          value={formData.surname}
+          onChange={handleForm}
+        />
+        <Input
+          placeholder="Inserte el apodo"
+          label="Apodo(*)"
+          name="nickname"
+          value={formData.nickname}
           onChange={handleForm}
         />
         <Select

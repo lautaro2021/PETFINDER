@@ -37,7 +37,7 @@ interface StyledTextAreaInterface {
 
 const StyledTextArea = styled.div<StyledTextAreaInterface>`
   grid-area: ${(props) =>
-    props.form === "pet" ? "7 / 1 / 8 / 3" : "4 / 1 / 5 / 3"};
+    props.form === "pet" ? "8 / 1 / 9 / 3" : "4 / 1 / 5 / 3"};
   display: flex;
   flex-direction: column;
   justify-content: center;

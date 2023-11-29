@@ -7,7 +7,7 @@ async function Pets() {
   const data = await getData();
 
   return (
-    <main className="main_container">
+    <main className="main_container" key={data.picture}>
       <div className={`container`}>
         {data?.pets?.length ? (
           data.pets?.map((pet, index: number) => (
@@ -16,7 +16,8 @@ async function Pets() {
               profileImage={pet.picture}
               name={pet.name}
               race={pet.race}
-              location={data.location}
+              location={data?.location}
+              province={data?.province}
               key={index}
             />
           ))

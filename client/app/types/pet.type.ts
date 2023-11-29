@@ -6,6 +6,8 @@ export type PetType = {
   pet_owner?: ProfileType;
   picture?: string;
   name?: string;
+  surname?: string;
+  nickname?: string;
   gender?: string;
   age?: string;
   race?: string;

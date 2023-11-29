@@ -1,7 +1,6 @@
 import { getSession } from "@auth0/nextjs-auth0";
 import axios, { AxiosResponse } from "axios";
 import type { ProfileType } from "../types/profile.type";
-import type { Claims } from "@auth0/nextjs-auth0";
 
 export const getData = async (): Promise<ProfileType> => {
   const Session = await getSession();

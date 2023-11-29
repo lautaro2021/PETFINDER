@@ -11,17 +11,21 @@ export default async function PetProfile({
   const petData = await getPetData(params.profileId);
 
   if (!petData) {
-    return <RedirectPofilePet profileId={params.profileId}/>;
-  };
+    return <RedirectPofilePet profileId={params.profileId} />;
+  }
   const petOwner = petData.pet_owner;
 
   return (
-    <main className="main_container">
+    <main className="main_container" key={petData.picture}>
       <section className={styles.PetProfileSection}>
         <div className={styles.PetProfileHeader}>
           <div className={styles.PetProfileHeaderData}>
             <img
-              src={petData.picture}
+              src={
+                petData.picture
+                  ? petData.picture
+                  : "/assets/images/default_image.png"
+              }
               alt="Pet Profile Photo"
               className={styles.PetProfileImg}
             />
@@ -29,7 +33,10 @@ export default async function PetProfile({
               <h1>{petData.name}</h1>
               <div className={styles.RowInfoContainer}>
                 <InfoRow icon={1} text={petData.race} />
-                <InfoRow icon={2} text={petOwner?.location} />
+                <InfoRow
+                  icon={2}
+                  text={`${petOwner?.location}, ${petOwner?.province}`}
+                />
               </div>
             </div>
           </div>
@@ -39,7 +46,14 @@ export default async function PetProfile({
               <h2>{petOwner?.name}</h2>
               <InfoRow icon={2} text={petOwner?.phone} />
             </div>
-            <a className={styles.PetOwnerContactBtn}>Contactar</a>
+            <a
+              href={`https://wa.me/${petOwner?.phone}`}
+              target="_blank"
+              rel="noreferrer"
+              className={styles.PetOwnerContactBtn}
+            >
+              Contactar
+            </a>
           </div>
         </div>
         <div className={styles.PetProfileInfo}>
