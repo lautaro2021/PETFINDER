@@ -1,0 +1,30 @@
+.QRGeneratorTable{
+  /* background-color: red; */
+  width: 100%;
+  background-color: white;
+  border-collapse: collapse;
+}
+.QRGeneratorTable thead{
+  background-color: rgb(220, 220, 220);
+}
+.QRGeneratorTable tr, .QRGeneratorTable th, .QRGeneratorTable td{
+  padding: 5px 10px;
+}
+.QRGeneratorTable tbody tr td{
+  text-align: center;
+}
+.QRGeneratorTable tbody tr:nth-child(even){
+  background-color: rgb(220, 220, 220);
+}
+
+@media screen and (max-width: 1000px){
+  .id {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 720px){
+  .url{
+    display: none;
+  }
+}

@@ -1,38 +1,106 @@
 .section{
-    padding-top: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.section figure{
+    width: 100%;
+    min-height: 700px;
+    padding: 70px;
+    border-radius: 20px;
+    background-color: #F5F5F5;
     position: relative;
 }
-.section img{
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
-    background-color: #F5F5F5;
-    margin-top: 30px;
-}
-.icon_container{
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.section figure{
     position: absolute;
-    bottom: 0;
-    right: 0;
+    top: 45px;
+    right:70px;
+}
+.section img{
+    width: 120px;
+    height: 120px;
     border-radius: 100%;
-    background-color: white;
-    box-shadow: 0px 1px 12px 0px rgba(0, 0, 0, 0.11);
+}
+.section p{
+    font-size: clamp(25px, 4.5vw, 45px);
 }
 .section form {
-    margin: 20px 0px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, auto);
     gap: 20px;
+}
+.section form input{
+    width: 100%;
+}
+.section form button{
+    width: 100%;
+    height: 100px;
+    border-radius: 20px;
+    font-size: clamp(13px, 2vw, 19px);
+    grid-area: 5 / 2 / 6 / 3;
+}
+.confirm_button{
+    background-color: var(--bg-color-primary) !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+.notification_container{
+    border-radius: 20px !important;
+}
+@media screen and (max-width: 1000px){
+    .section img{
+        width: 100px;
+        height: 100px;
+    }
+}
+@media screen and (max-width: 700px){
+    .section{
+        padding: 30px 0px 0px 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+    }
+    .section figure{
+        position: relative;
+        top: auto;
+        right: auto;
+    }
+    .section img{
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        background-color: #F5F5F5;
+        margin-top: 30px;
+    }
+    .icon_container{
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        border-radius: 100%;
+        background-color: white;
+        box-shadow: 0px 1px 12px 0px rgba(0, 0, 0, 0.11);
+    }
+    .section form {
+        margin: 20px 0px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .section form input{
+        width: 100%;
+    }
+
+    .section form button{
+        width: 100%;
+        height: auto;
+        border-radius: 100px;
+    }
+    
 }

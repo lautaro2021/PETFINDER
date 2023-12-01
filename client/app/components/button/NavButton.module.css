@@ -1,0 +1,12 @@
+.NavButton{
+  border: 1px solid #000;
+  color: #000;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 100px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 215px;
+}

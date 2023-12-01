@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 function Typography({
   color,
@@ -13,27 +12,23 @@ function Typography({
   children: React.ReactNode;
 }) {
   return (
-    <StyledText color={color} textalignment={textalignment} size={size}>
+    <div
+      style={{
+        color: color,
+        textAlign: textalignment,
+        fontSize: fontSizes[size],
+        fontWeight: size === "md" ? 600 : "",
+      }}
+    >
       {children}
-    </StyledText>
+    </div>
   );
 }
 
 export default Typography;
 
-interface TypographyType {
-  color: string;
-  size: string;
-  textalignment: string;
-}
-
-const StyledText = styled.div<TypographyType>`
-  color: ${(props) => props.color};
-  text-align: ${(props) => props.textalignment};
-  ${(props) =>
-    props.size === "sm"
-      ? "font-size: 25px;"
-      : props.size === "md"
-      ? "font-size: 30px; font-weight: 600"
-      : "font-size: 18px;"}
-`;
+const fontSizes = {
+  sm: "25px",
+  md: "28px",
+  ssm: "18px",
+};

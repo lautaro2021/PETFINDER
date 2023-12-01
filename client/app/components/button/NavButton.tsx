@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import styled from "styled-components";
+import style from './NavButton.module.css'
 
 function NavButton({
   text,
@@ -13,14 +13,14 @@ function NavButton({
 }) {
   if (type === "anchor") {
     return (
-      <StyledButton as="a" href={href}>
+      <a className={style.NavButton} href={href}>
         {text}
-      </StyledButton>
+      </a>
     );
   } else {
     return (
-      <Link href={href}>
-        <StyledButton>{text}</StyledButton>
+      <Link href={href} className={style.NavButton}>
+        {text}
       </Link>
     );
   }
@@ -28,15 +28,3 @@ function NavButton({
 
 export default NavButton;
 
-const StyledButton = styled.button`
-  border: 1px solid #000;
-  color: #000;
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 100px;
-  padding: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 215px;
-`;

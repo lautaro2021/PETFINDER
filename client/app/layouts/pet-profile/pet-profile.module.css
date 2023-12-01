@@ -1,38 +1,293 @@
 .section{
-    padding-top: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.section figure{
+    width: 100%;
+    min-height: 700px;
+    padding: 70px;
+    border-radius: 20px;
+    background-color: #F5F5F5;
     position: relative;
 }
-.section img{
-    width: 100px;
-    height: 100px;
-    border-radius: 100%;
-    background-color: #F5F5F5;
-    margin-top: 30px;
-}
-.icon_container{
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    border-radius: 100%;
-    background-color: white;
-    box-shadow: 0px 1px 12px 0px rgba(0, 0, 0, 0.11);
-}
 .section form {
-    margin: 20px 0px;
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(8, auto);
+    gap: 20px;
+}
+.section p{
+    font-size: clamp(25px, 4.5vw, 45px);
+}
+.section form input{
     width: 100%;
+}
+.section form button{
+    width: 100%;
+    height: 100px;
+    border-radius: 20px;
+    font-size: clamp(13px, 2vw, 19px);
+    grid-area: 9 / 2 / 10 / 3;;
+}
+.section figure{
+    position: absolute;
+    top: 45px;
+    right:70px;
+}
+.section img{
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+}
+.confirm_button{
+    background-color: var(--bg-color-primary) !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+.notification_container{
+    border-radius: 20px !important;
+}
+@media screen and (max-width: 1000px){
+    .section img{
+        width: 100px;
+        height: 100px;
+    }
+}
+@media screen and (max-width: 700px){
+    .section{
+        width: 100%;
+        padding: 30px 0px 0px 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+    }
+    .section form {
+        margin: 20px 0px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+    .section figure{
+        position: relative;
+        top: auto;
+        right: auto;
+    }
+    .section img{
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        background-color: #F5F5F5;
+        margin-top: 30px;
+    }
+    
+}
+/* Pet Profile Details */
+
+.PetProfileSection{
+    width: 100%;
+    min-height: 700px;
+    padding: 70px;
+    border-radius: 20px;
+    background-color: #F5F5F5;
+    position: relative;
+}
+.PetProfileHeader{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding-top: 20px;
+}
+.PetProfileHeader .PetProfileImg{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.PetProfileHeaderData{
+    display: flex;
+    gap: 20px;
+}
+.PetProfileHeaderData div{
+    height: fit-content;
+}
+.PetProfileHeaderData h1{
+    font-size: 25px;
+    font-weight: 600;
+}
+.RowInfoContainer{
     display: flex;
     flex-direction: column;
+    gap: 5px;
+}
+.RowInfoContainer div{
+    margin: 0;
+}
+.RowInfoContainer img, .PetOwnerInfo img{
+    height: 14px !important;
+    filter: invert(50%);
+    -webkit-filter: invert(50%);
+    -moz-filter: invert(50%);
+}
+.RowInfoContainer p, .PetOwnerInfo p{
+    font-size: 13px;
+    color: var(--color-grey);
+}
+
+
+.PetOwnerDataCard{
+    background-color: var(--color-white);
+    display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 15px;
+}
+.PetOwnerInfo label{
+    font-size: 13px;
+    font-weight: 600;
+}
+.PetOwnerInfo h2{
+    font-size: 20px;
+    font-weight: 600;
+}
+.PetOwnerDataCard .PetOwnerContactBtn{
+    cursor: pointer;
+    color: var(--color-white);
+    background-color: var(--bg-color-primary);
+    padding: 25px 35px;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+
+
+.PetProfileInfo{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.PetInfoCardsContainer{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+}
+.PetInfoCard{
+    background-color: var(--color-white);
+    min-height: 100px;
+    padding: 15px 20px;
+    border-radius: 15px;
+    grid-column: span 2;
+}
+.PetInfoCard:nth-child(n + 5){
+    grid-column: span 4;
+}
+.PetInfoCard label{
+    color: var(--color-grey);
+    font-size: 13px;
+}
+.PetInfoCard p{
+    margin-top: 5px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+@media (width < 700px){
+    .PetProfileSection{
+        padding: 30px 0px 0px 0px;
+        background-color: white;
+    }
+    .PetInfoCard{
+        background-color: var(--color-white);
+        min-height: 100px;
+        padding: 15px 20px;
+        border-radius: 15px;
+        grid-column: span 2;
+        border: 1px solid #e1e1e1;
+    }
+    .PetOwnerDataCard{
+        background-color: var(--color-white);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 15px 20px;
+        border-radius: 15px;
+        border: 1px solid #e1e1e1;
+    }
+}
+@media (width > 768px){
+    .PetProfileHeaderData{
+        align-items: center;
+    }
+    .PetProfileHeader .PetProfileImg{
+        width: 100px;
+        height: 100px;
+    }
+    .RowInfoContainer img, .PetOwnerInfo img{
+        height: 16px !important;
+    }
+    .RowInfoContainer p, .PetOwnerInfo p{
+        font-size: 14px;
+    }
+    .PetOwnerDataCard{
+        width: 50%;
+        max-width: 500px;
+    }
+}
+@media (width > 1024px){
+    .PetProfileHeader .PetProfileImg{
+        width: 125px;
+        height: 125px;
+    }
+    .PetProfileHeaderData h1{
+        font-size: 40px;
+        font-weight: 600;
+    }
+    .RowInfoContainer{
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .RowInfoContainer img, .PetOwnerInfo img{
+        height: 19px !important;
+    }
+    .RowInfoContainer p, .PetOwnerInfo p{
+        font-size: 20px;
+    }
+    .PetOwnerInfo label{
+        font-size: 18px;
+        font-weight: 400;
+    }
+    .PetOwnerInfo h2{
+        font-size: 25px;
+    }
+    .PetProfileInfo h4{
+        font-size: 25px;
+        font-weight: 600;
+    }
+    .PetOwnerDataCard .PetOwnerContactBtn{
+        padding: 20px 35px;
+        font-size: 20px;
+    }
+    .PetInfoCard{
+        min-height: 150px;
+        grid-column: span 1;
+    }
+    .PetInfoCard:nth-child(n + 5){
+        grid-column: span 1;
+    }
+    .PetInfoCard label{
+        font-size: 18px;
+    }
+    .PetInfoCard p{
+        margin-top: 13px;
+        font-size: 20px;
+        font-weight: 600;
+    }
 }

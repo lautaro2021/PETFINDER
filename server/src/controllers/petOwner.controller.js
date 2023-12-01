@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import { PetOwner } from "../models/PetOwner.js"
 import { Pet } from "../models/Pet.js";
 
@@ -25,20 +24,44 @@ export const getPetOwner = async (req, res) => {
     }
 }
 
+export const getOrCreatePetOwnerByEmail = async (req, res) => {
+    const {email, picture, name, surname} = req.query
+    try{
+        if(email){
+            const [petOwner] = await PetOwner.findOrCreate({
+                where: {email},
+                include: Pet,
+                defaults: {email, picture, name, surname}
+            })
+            petOwner ? res.status(200).json(petOwner) : res.status(404).send('Creation failed')
+        }
+    }
+    catch (error){
+        res.status(500).send('Internal server error')
+        throw new Error(error)
+    }
+}
+
+
 export const createPetOwner = async (req, res) => {
-    const {name, phone, location, province, direction, email, password} = req.body;
+    const {name, surname, phone, location, province,  email} = req.body;
     try {
-        const hashedPassword = bcrypt.hashSync(password, 10);
-        const newPetOwner = await PetOwner.create({
-            name,
-            phone,
-            location,
-            province,
-            direction,
-            email,
-            password: hashedPassword
-        })
-        newPetOwner ? res.status(200).json(newPetOwner) : res.status(404).send('Creation error');
+        const findPetOwnerByEmail = await PetOwner.findOne({where: {email}})
+        if(!findPetOwnerByEmail){
+            const newPetOwner = await PetOwner.create({
+                name,
+                surname,
+                phone,
+                location,
+                province,
+                email,
+            })
+            newPetOwner ? res.status(200).json(newPetOwner) : res.status(404).send('Creation failed');
+        }
+        else{
+            res.status(404).send('A user already exists with that email')
+        }
+
     }
     catch (error) {
         res.status(500).send('Internal server error')

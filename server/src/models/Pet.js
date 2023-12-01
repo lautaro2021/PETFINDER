@@ -3,25 +3,60 @@ import { sequelize } from "../db/database.js";
 
 export const Pet = sequelize.define('pet', {
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         primaryKey: true,
-        autoIncrement: true
     },
     name: {
         type: DataTypes.STRING,
+    },
+    surname: {
+        type: DataTypes.STRING,
+    },
+    nickname: {
+        type: DataTypes.STRING,
         allowNull: false,
     },
+    picture: {
+        type: DataTypes.STRING
+    },
     gender: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM('Macho', 'Hembra', ""),
         allowNull: false,
     },
     age: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    observations: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+    },
+    race: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    disease: {
+        type: DataTypes.ENUM("SI", "NO", ""),
+    },
+    diseaseType: {
+        type: DataTypes.STRING,
+    },
+    treatment: {
+        type: DataTypes.ENUM("SI", "NO", ""),
+    },
+    treatmentType: {
+        type: DataTypes.STRING,
+    },
+    vaccines: {
+        type: DataTypes.ENUM("SI", "NO", ""),
+    },
+    castrated: {
+        type: DataTypes.ENUM("SI", "NO", ""),
+    },
+    petshop: {
+        type: DataTypes.STRING,
+    },
+    veterinary: {
+        type: DataTypes.STRING
+    },
+    info: {
+        type: DataTypes.TEXT
     }
 }, {
     timestamps: false
