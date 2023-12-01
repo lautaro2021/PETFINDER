@@ -10,6 +10,8 @@ import AdminPanel from "@/app/layouts/QRGenerator/admin-panel/AdminPanel";
 const NEXT_PUBLIC_TOKEN_QR_GENERATOR =
   process.env.NEXT_PUBLIC_TOKEN_QR_GENERATOR;
 const NEXT_PUBLIC_QR_GEN_PASS = process.env.NEXT_PUBLIC_QR_GEN_PASS;
+export const BACK_API = process.env.BACK_URL;
+export const BASE_URL = process.env.AUTH0_BASE_URL;
 
 export default function QRGenerator() {
   const [userActive, setUserActive] = useState(false);
@@ -25,7 +27,7 @@ export default function QRGenerator() {
   useEffect(() => {
     const getAllQRs = async () => {
       const dataQRs = await axios
-        .get(`http://localhost:3001/qr-generator?page=${currentPage}`)
+        .get(`${BACK_API}/qr-generator?page=${currentPage}`)
         .then((res) => res.data);
       setDataQRs({ qr: dataQRs.data, totalQR: dataQRs.pageInfo?.totalResults });
       setLastPage(dataQRs.pageInfo?.totalPages);
@@ -51,7 +53,7 @@ export default function QRGenerator() {
                   size: 500,
                   transparentBkg: false,
                   qrCategory: "url",
-                  text: `http://localhost:3000/pet-profile/${id}`,
+                  text: `${BASE_URL}/pet-profile/${id}`,
                 },
                 {
                   headers: {
@@ -72,7 +74,7 @@ export default function QRGenerator() {
 
         if (qrDataArray.length > 0) {
           const response = await axios.post(
-            "http://localhost:3001/qr-generator",
+            `${BACK_API}/qr-generator`,
             qrDataArray
           );
           setDataQRs({

@@ -11,6 +11,7 @@ import ProfileImage from "@/app/components/profile-image/ProfileImage";
 import Textarea from "@/app/components/textarea/Textarea";
 import { uploadImage } from "@/app/utils/uploadCloudinaryImage";
 import { useRouter } from "next/navigation";
+import { BACK_API } from "@/app/(pages)/qr-generator/page";
 
 function PetProfileEditLayout({
   userId,
@@ -83,7 +84,7 @@ function PetProfileEditLayout({
     const data = { ...formData, petOwnerId: userId };
     if (!petData) {
       await axios
-        .post(`http://localhost:3001/pet`, data)
+        .post(`${BACK_API}/pet`, data)
         .then(() => {
           Swal.fire({
             title: "Mascota creada con exito",
@@ -110,7 +111,7 @@ function PetProfileEditLayout({
         });
     } else {
       await axios
-        .put(`http://localhost:3001/pet/${petData.id}`, formData)
+        .put(`${BACK_API}/pet/${petData.id}`, formData)
         .then(() => {
           Swal.fire({
             title: "Mascota editada con exito",

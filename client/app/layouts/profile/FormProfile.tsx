@@ -8,6 +8,7 @@ import axios from "axios";
 import { ProfileType } from "@/app/types/profile.type";
 import Loader from "@/app/components/loader/Loader";
 import Swal from "sweetalert2";
+import { BACK_API } from "@/app/(pages)/qr-generator/page";
 
 export default function FormProfile({ data }: { data: ProfileType }) {
   const [formData, setFormData] = useState<ProfileType>({
@@ -42,7 +43,7 @@ export default function FormProfile({ data }: { data: ProfileType }) {
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await axios
-      .put(`http://localhost:3001/petowner/${data.id}`, formData)
+      .put(`${BACK_API}/petowner/${data.id}`, formData)
       .then(() => {
         Swal.fire({
           title: "Cambios guardados con exito",
