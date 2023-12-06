@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import style from "./dashboard.module.css";
-import Typography from "@/app/components/typography/Typography";
 import NavButton from "@/app/components/button/NavButton";
+import TermsPolicy from "@/app/components/terms-policy/TermsPolicy";
 
 function Dashboard() {
   return (
@@ -30,6 +30,13 @@ function Dashboard() {
           type="anchor"
           href="https://polytusk.com.ar/"
         ></NavButton>
+      </article>
+      <article className={style.terms}>
+        <figure>
+          <img src="/assets/images/iso.png" />
+          <img src="/assets/images/logo.png" />
+        </figure>
+        <TermsPolicy />
       </article>
     </section>
   );
