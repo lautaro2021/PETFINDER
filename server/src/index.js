@@ -10,10 +10,8 @@ const main = async() => {
             console.log(`listening at ${process.env.PORT}...`)
         })
     }
-    catch (error){
-        throw new Error (error)
+    catch(error){
+        throw new Error(error)
     }
-
 }
-
 main();
