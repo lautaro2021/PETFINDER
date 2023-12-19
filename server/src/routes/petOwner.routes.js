@@ -3,11 +3,11 @@ import { getAllPetOwner, getPetOwner, createPetOwner, updatePetOwner, deletePetO
 
 const router = Router();
 
-router.get('/petowner', getAllPetOwner)
-router.get('/petowner/login', getOrCreatePetOwnerByEmail)
-router.post('/petowner', createPetOwner)
-router.get('/petowner/:id', getPetOwner)
-router.put('/petowner/:id', updatePetOwner)
-router.delete('/petowner/:id', deletePetOwner)
+router.get('/api/petowner', getAllPetOwner)
+router.get('/api/petowner/login', getOrCreatePetOwnerByEmail)
+router.post('/api/petowner', createPetOwner)
+router.get('/api/petowner/:id', getPetOwner)
+router.put('/api/petowner/:id', updatePetOwner)
+router.delete('/api/petowner/:id', deletePetOwner)
 
 export default router;
