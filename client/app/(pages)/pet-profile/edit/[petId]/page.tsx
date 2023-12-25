@@ -1,19 +1,23 @@
-// "use client";
-import React from "react";
+"use client";
 import PetProfileEditLayout from "@/app/layouts/pet-profile/PetProfileEdit";
-import { getPetData } from "@/app/utils/getPetData";
-import { redirect } from 'next/navigation'
+import { redirect } from "next/navigation";
+import { useClientData } from "@/app/utils/hooks/useClientData";
+import Loader from "@/app/components/loader/Loader";
 
-async function EditPet({params}:{params:{petId:string}}) {
-  const petId = params.petId
-  
-  const petData = await getPetData(petId);
+function EditPet({ params }: { params: { petId: string } }) {
+  const petId = params.petId;
 
-  if(!petData) return redirect(`/pet-profile/add?newId=${petId}`)
+  const fetchType = "pet";
+
+  const { data, isLoading } = useClientData(fetchType, petId);
+
+  console.log(data);
+
+  if (!data && !isLoading) return redirect(`/pet-profile/add?newId=${petId}`);
 
   return (
     <main className="main_container">
-      <PetProfileEditLayout petData={petData}/>
+      {data ? <PetProfileEditLayout petData={data} /> : <Loader />}
     </main>
   );
 }

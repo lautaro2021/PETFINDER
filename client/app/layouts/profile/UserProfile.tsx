@@ -1,11 +1,13 @@
-import React from "react";
-import { getData } from "@/app/utils/getData";
+"use client";
+import { useClientData } from "@/app/utils/hooks/useClientData";
 import FormProfile from "./FormProfile";
+import Loader from "@/app/components/loader/Loader";
 
-async function UserProfile() {
-  const data = await getData();
+function UserProfile() {
+  const fetchType = "petowner";
+  const { data } = useClientData(fetchType);
 
-  return <FormProfile data={data} />;
+  return <>{data ? <FormProfile data={data} /> : <Loader />}</>;
 }
 
 export default UserProfile;

@@ -3,10 +3,10 @@ import { getPet, getAllPet, createPet, updatePet, deletePet } from "../controlle
 
 const router = Router();
 
-router.get('/api/pet', getAllPet)
-router.post('/api/pet', createPet)
-router.get('/api/pet/:id', getPet)
-router.put('/api/pet/:id', updatePet)
-router.delete('/api/pet/:id', deletePet)
+router.get('/ws/pet', getAllPet)
+router.post('/ws/pet', createPet)
+router.get('/ws/pet/:id', getPet)
+router.put('/ws/pet/:id', updatePet)
+router.delete('/ws/pet/:id', deletePet)
 
 export default router;
