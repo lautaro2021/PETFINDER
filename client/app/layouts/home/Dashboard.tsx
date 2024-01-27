@@ -28,7 +28,7 @@ function Dashboard() {
         <NavButton
           text="Visitar tienda online"
           type="anchor"
-          href="https://polytusk.com.ar/"
+          href="https://polytusk.com.ar/categoria-producto/qrsmart/"
         ></NavButton>
       </article>
       <article className={style.terms}>

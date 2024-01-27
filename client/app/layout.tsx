@@ -10,7 +10,7 @@ import RedirectLogin from "./utils/redirectLogin";
 const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Petfinder | Politusk diseños",
+  title: "Petfinder | Polytusk diseños",
 };
 
 export default async function RootLayout({

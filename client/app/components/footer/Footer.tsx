@@ -8,7 +8,7 @@ import type { Claims } from "@auth0/nextjs-auth0/edge";
 function Footer({ user }: { user?: Claims }) {
   const pathname = usePathname();
 
-  if (user) {
+  if (user && Object.keys(user).length) {
     if (pathname !== "/login" && pathname !== "/register") {
       return (
         <footer className={style.footer}>
@@ -70,7 +70,7 @@ function Footer({ user }: { user?: Claims }) {
             </Link>
             <div className={style.logout_container}>
               <a
-                href="https://polytusk.com.ar/"
+                href="https://polytusk.com.ar/categoria-producto/qrsmart/"
                 target="_blank"
                 rel="noreferrer"
               >

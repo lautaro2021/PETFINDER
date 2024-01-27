@@ -6,7 +6,10 @@ import QrForm from "@/app/layouts/QRGenerator/form/QrForm";
 import { QRType } from "@/app/types/qr.type";
 import PaginationButtons from "@/app/layouts/QRGenerator/pagination/pagination";
 import AdminPanel from "@/app/layouts/QRGenerator/admin-panel/AdminPanel";
-import { NEXT_PUBLIC_AUTH0_BASE_URL, NEXT_PUBLIC_BACK_URL } from "@/app/config/config";
+import {
+  NEXT_PUBLIC_AUTH0_BASE_URL,
+  NEXT_PUBLIC_BACK_URL,
+} from "@/app/config/config";
 
 const NEXT_PUBLIC_TOKEN_QR_GENERATOR =
   process.env.NEXT_PUBLIC_TOKEN_QR_GENERATOR;
@@ -53,6 +56,8 @@ export default function QRGenerator() {
                   transparentBkg: false,
                   qrCategory: "url",
                   text: `${NEXT_PUBLIC_AUTH0_BASE_URL}/pet-profile/${id}`,
+                  qrData: "pattern3",
+                  colorDark: "rgb(0,0,0)",
                 },
                 {
                   headers: {
@@ -81,7 +86,7 @@ export default function QRGenerator() {
             qr: [...response?.data],
           });
           setCurrentPage(1);
-          setLastPage(prev => prev + 1);
+          setLastPage((prev) => prev + 1);
           setIsLoading(false);
         }
       }

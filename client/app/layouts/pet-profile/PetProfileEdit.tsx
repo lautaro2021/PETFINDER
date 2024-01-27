@@ -43,7 +43,14 @@ function PetProfileEditLayout({
     info: petData?.info,
   });
 
-  const formRequiredFields = ["nickname", "gender", "race", "age"];
+  const formRequiredFields = [
+    "nickname",
+    "gender",
+    "race",
+    "age",
+    "name",
+    "surname",
+  ];
   const validate = formRequiredFields.every(
     (key) => formData[key as keyof PetType]
   );
@@ -87,7 +94,8 @@ function PetProfileEditLayout({
         .post(`${NEXT_PUBLIC_BACK_URL}/pet`, data)
         .then(() => {
           Swal.fire({
-            title: "Mascota creada con exito",
+            title:
+              "Mascota creada con exito, revise su información personal para completar el registro",
             icon: "success",
             iconColor: "#3C8B96",
             customClass: {
@@ -95,7 +103,7 @@ function PetProfileEditLayout({
               popup: `${style.notification_container}`,
             },
           });
-          router.push("/pet-profile");
+          router.push("/profile");
         })
         .catch((error) => {
           Swal.fire({
@@ -146,14 +154,14 @@ function PetProfileEditLayout({
       <form>
         <Input
           placeholder="Inserte el nombre"
-          label="Nombre"
+          label="Nombre(*)"
           name="name"
           value={formData.name}
           onChange={handleForm}
         />
         <Input
           placeholder="Inserte el apellido"
-          label="Apellido"
+          label="Apellido(*)"
           name="surname"
           value={formData.surname}
           onChange={handleForm}
