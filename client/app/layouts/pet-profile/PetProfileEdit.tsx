@@ -42,6 +42,7 @@ function PetProfileEditLayout({
     veterinary: petData?.veterinary,
     info: petData?.info,
   });
+  const [ageError, setAgeError] = useState(false);
 
   const formRequiredFields = [
     "nickname",
@@ -58,9 +59,24 @@ function PetProfileEditLayout({
   const handleForm = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    const inputValue = e.target.value.trim();
+    const valueToNumber = parseFloat(inputValue);
+
+    if (
+      e.target.type === "number" &&
+      (isNaN(valueToNumber) ||
+        inputValue.startsWith("0") ||
+        valueToNumber <= 0 ||
+        valueToNumber >= 100)
+    ) {
+      setAgeError(true);
+    } else {
+      setAgeError(false);
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: inputValue,
     });
   };
 
@@ -264,7 +280,7 @@ function PetProfileEditLayout({
         <ActionButton
           text={"Guardar información"}
           action={submitForm}
-          disabled={!validate}
+          disabled={!validate || ageError}
         />
       </form>
     </section>

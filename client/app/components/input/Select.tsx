@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import s from "./select.module.css";
 
 function Select({
   id,
@@ -21,7 +21,7 @@ function Select({
   options?: string[];
 }) {
   return (
-    <StyledInput>
+    <div className={s.container}>
       <label htmlFor={id}>{label}</label>
       <select id={id} onChange={onChange} name={name} value={value}>
         <option value="" defaultValue={""} hidden>
@@ -40,39 +40,8 @@ function Select({
           ))
         )}
       </select>
-    </StyledInput>
+    </div>
   );
 }
 
 export default Select;
-
-const StyledInput = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-  font-size: 14px;
-
-  label {
-    font-weight: 500;
-  }
-
-  select {
-    padding: 10px 15px;
-    border-radius: 100px;
-    border: 1px solid #e1e1e1;
-    background-color: #f5f5f5;
-
-    &:focus {
-      outline: 0;
-      border: 1px solid #c5c5c5;
-    }
-  }
-
-  @media screen and (max-width: 700px) {
-    select {
-      background-color: white;
-    }
-  }
-`;
