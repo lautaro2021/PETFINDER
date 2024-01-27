@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import s from "./textarea.module.css";
 
 function Textarea({
   id,
@@ -18,13 +19,15 @@ function Textarea({
 }) {
   return (
     <StyledTextArea form={form}>
-      <label htmlFor={id}>{label}</label>
-      <textarea
-        id={id}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-      />
+      <div className={s.container}>
+        <label htmlFor={id}>{label}</label>
+        <textarea
+          id={id}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+        />
+      </div>
     </StyledTextArea>
   );
 }
@@ -38,30 +41,6 @@ interface StyledTextAreaInterface {
 const StyledTextArea = styled.div<StyledTextAreaInterface>`
   grid-area: ${(props) =>
     props.form === "pet" ? "8 / 1 / 9 / 3" : "4 / 1 / 5 / 3"};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-  font-size: 14px;
-
-  label {
-    font-weight: 500;
-  }
-
-  textarea {
-    padding: 10px 15px;
-    border-radius: 20px;
-    border: 1px solid #e1e1e1;
-    resize: none;
-    min-height: 125px;
-    font-family: "Inter", sans-serif;
-    background-color: #f5f5f5;
-
-    &:focus {
-      outline: 0;
-      border: 1px solid #c5c5c5;
-    }
-  }
 
   @media screen and (max-width: 700px) {
     grid-area: auto;

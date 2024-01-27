@@ -1,4 +1,0 @@
-#dependencies
-/server/node_modules
-/server/.env
-/server/src/ssl

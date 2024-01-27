@@ -28,8 +28,16 @@ function PetCard({
         />
         <div className={style.text_container}>
           <h3>{name}</h3>
-          <InfoRow icon={1} text={race} />
-          <InfoRow icon={2} text={`${location}, ${province}`} />
+          {race ? (
+            <InfoRow icon={1} text={race} />
+          ) : (
+            <InfoRow icon={1} text={"-"} />
+          )}
+          {location && province ? (
+            <InfoRow icon={2} text={`${location}, ${province}`} />
+          ) : (
+            <InfoRow icon={2} text={`-`} />
+          )}
         </div>
         <Link href={`/pet-profile/edit/${petId}`}>
           <figure>

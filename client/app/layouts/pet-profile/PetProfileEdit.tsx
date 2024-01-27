@@ -42,8 +42,16 @@ function PetProfileEditLayout({
     veterinary: petData?.veterinary,
     info: petData?.info,
   });
+  const [ageError, setAgeError] = useState(false);
 
-  const formRequiredFields = ["nickname", "gender", "race", "age"];
+  const formRequiredFields = [
+    "nickname",
+    "gender",
+    "race",
+    "age",
+    "name",
+    "surname",
+  ];
   const validate = formRequiredFields.every(
     (key) => formData[key as keyof PetType]
   );
@@ -51,9 +59,24 @@ function PetProfileEditLayout({
   const handleForm = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
+    const inputValue = e.target.value.trim();
+    const valueToNumber = parseFloat(inputValue);
+
+    if (
+      e.target.type === "number" &&
+      (isNaN(valueToNumber) ||
+        inputValue.startsWith("0") ||
+        valueToNumber <= 0 ||
+        valueToNumber >= 100)
+    ) {
+      setAgeError(true);
+    } else {
+      setAgeError(false);
+    }
+
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: inputValue,
     });
   };
 
@@ -87,7 +110,8 @@ function PetProfileEditLayout({
         .post(`${NEXT_PUBLIC_BACK_URL}/pet`, data)
         .then(() => {
           Swal.fire({
-            title: "Mascota creada con exito",
+            title:
+              "Mascota creada con exito, revise su información personal para completar el registro",
             icon: "success",
             iconColor: "#3C8B96",
             customClass: {
@@ -95,7 +119,7 @@ function PetProfileEditLayout({
               popup: `${style.notification_container}`,
             },
           });
-          router.push("/pet-profile");
+          router.push("/profile");
         })
         .catch((error) => {
           Swal.fire({
@@ -146,14 +170,14 @@ function PetProfileEditLayout({
       <form>
         <Input
           placeholder="Inserte el nombre"
-          label="Nombre"
+          label="Nombre(*)"
           name="name"
           value={formData.name}
           onChange={handleForm}
         />
         <Input
           placeholder="Inserte el apellido"
-          label="Apellido"
+          label="Apellido(*)"
           name="surname"
           value={formData.surname}
           onChange={handleForm}
@@ -256,7 +280,7 @@ function PetProfileEditLayout({
         <ActionButton
           text={"Guardar información"}
           action={submitForm}
-          disabled={!validate}
+          disabled={!validate || ageError}
         />
       </form>
     </section>
