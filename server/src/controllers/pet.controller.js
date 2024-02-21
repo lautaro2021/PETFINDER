@@ -7,7 +7,6 @@ export const getAllPet = async (req, res) => {
         allPets.length ? res.status(200).json(allPets) : res.status(204).send('No pets found')
     } catch (error) {
         res.status(500).send('Internal server error')
-        throw new Error(error)
     }
 }
 
@@ -18,18 +17,25 @@ export const getPet = async (req, res) => {
         pet ? res.status(200).json(pet) : res.status(404).send('Pet not found')
     } catch (error) {
         res.status(500).send('Internal server error')
-        throw new Error(error)
     }
 }
 export const createPet = async (req, res) => {
     const data = req.body;
 
-    try {
-        const newPet = await Pet.create(data)
-        newPet ? res.status(200).json(newPet) : res.status(404).send('Creation error');
-    } catch (error) {
-        res.status(500).send('Internal server error')
-        throw new Error(error)
+    const pet = await Pet.findByPk(data.id);
+
+    console.log(pet)
+
+    if(!pet){
+        try {
+            const newPet = await Pet.create(data)
+            newPet ? res.status(200).json(newPet) : res.status(404).send('Error al crear la mascota');
+        } catch (error) {
+            res.status(500).send('Internal server error')
+        }
+    }
+    else{
+        res.status(409).send('Ya existe una mascota vinculada a ese ID')
     }
 }
 export const updatePet = async (req, res) => {
@@ -46,7 +52,6 @@ export const updatePet = async (req, res) => {
         }
     } catch (error) {
         res.status(500).send('Internal server error')
-        throw new Error(error)
     }
 }
 export const deletePet = async (req, res) => {
@@ -63,6 +68,5 @@ export const deletePet = async (req, res) => {
         
     } catch (error) {
         res.status(500).send('Internal server error')
-        throw new Error(error)
     }
 }

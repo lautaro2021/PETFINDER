@@ -122,8 +122,10 @@ function PetProfileEditLayout({
           router.push("/profile");
         })
         .catch((error) => {
+          const err = error.response.data;
+
           Swal.fire({
-            title: "Error al crear tu mascota",
+            title: `${err}`,
             icon: "error",
             iconColor: "#3C8B96",
             customClass: {
