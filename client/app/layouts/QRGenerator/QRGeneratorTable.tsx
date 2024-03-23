@@ -7,6 +7,7 @@ export default function QRGeneratorTable({
   data: {
     IDpet: string;
     QRurl: string;
+    createdAt?: string;
   }[];
 }) {
   return (
@@ -14,6 +15,7 @@ export default function QRGeneratorTable({
       <thead>
         <tr>
           <th>Imagen QR</th>
+          <th className={styles.date}>Fecha</th>
           <th className={styles.id}>ID</th>
           <th className={styles.url}>URL</th>
           <th>Descargar</th>
@@ -21,11 +23,13 @@ export default function QRGeneratorTable({
       </thead>
       <tbody>
         {data?.map((d) => {
+          const date = d.createdAt?.slice(0, 10).split('-').reverse().join('-');
           return (
             <tr>
               <td>
                 <img src={d.QRurl} style={{ height: 100 }} />
               </td>
+              <td className={styles.date}>{date}</td>
               <td className={styles.id}>{d.IDpet}</td>
               <td className={styles.url}>{d.QRurl}</td>
               <td>

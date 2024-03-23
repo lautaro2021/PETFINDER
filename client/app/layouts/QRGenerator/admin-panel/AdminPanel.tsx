@@ -16,7 +16,7 @@ function AdminPanel({
   totalQr,
   totalPage
 }: {
-  data: { IDpet: string; QRurl: string }[];
+  data: { IDpet: string; QRurl: string; createdAt?:string }[];
   generateAction: () => void;
   downloadAction: () => void;
   children: React.ReactNode;

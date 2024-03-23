@@ -24,8 +24,6 @@ export const createPet = async (req, res) => {
 
     const pet = await Pet.findByPk(data.id);
 
-    console.log(pet)
-
     if(!pet){
         try {
             const newPet = await Pet.create(data)
