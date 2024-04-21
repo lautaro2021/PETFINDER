@@ -98,7 +98,10 @@ export default function QRGenerator() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const inputElement = e.currentTarget.elements[0] as HTMLInputElement;
-    if (inputElement.value === NEXT_PUBLIC_QR_GEN_PASS) setUserActive(true);
+    if (inputElement.value === NEXT_PUBLIC_QR_GEN_PASS) {
+      sessionStorage.setItem('pass', inputElement.value);
+      setUserActive(true);
+    }
   };
 
   const handleDownloadAllPage = async () => {
@@ -132,6 +135,11 @@ export default function QRGenerator() {
   const handleQrCuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQrCuantity(e.target.value);
   };
+
+  useEffect(() => {
+    const pass = sessionStorage.getItem('pass');
+    if (pass === NEXT_PUBLIC_QR_GEN_PASS) setUserActive(true)
+  }, [])
 
   return (
     <main className="main_container">

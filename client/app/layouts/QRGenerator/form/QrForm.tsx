@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import style from "./qr-form.module.css";
 import Image from "next/image";
 import { CiLock } from "react-icons/ci";
@@ -8,6 +8,10 @@ function QrForm({
 }: {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }) {
+  const [showHelp, setShowHelp] = useState(false);
+
+  const handleHelp = () => setShowHelp(!showHelp);
+
   return (
     <section className={style.form_container}>
       <figure>
@@ -25,6 +29,8 @@ function QrForm({
         <input type="password" required />
         <button>Entrar</button>
       </form>
+      {/* <span onClick={handleHelp}>Ayuda constraseña</span>
+      {showHelp && <label>P*******2**3</label>} */}
     </section>
   );
 }

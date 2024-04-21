@@ -1,4 +1,4 @@
-.NavButton{
+.NavButton {
   border: 1px solid #000;
   color: #000;
   font-size: 12px;
@@ -9,4 +9,5 @@
   align-items: center;
   justify-content: center;
   width: 215px;
+  white-space: nowrap;
 }

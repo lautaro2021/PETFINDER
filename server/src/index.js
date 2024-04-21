@@ -3,14 +3,14 @@ import app from "./config/app.js";
 import { sequelize } from './db/database.js';
 
 dotenv.config();
-const main = async() => {
+const main = async () => {
     try {
-        await sequelize.sync({force:false})
+        await sequelize.sync({ force: false })
         app.listen(process.env.PORT, () => {
             console.log(`listening at ${process.env.PORT}...`)
         })
     }
-    catch(error){
+    catch (error) {
         throw new Error(error)
     }
 }

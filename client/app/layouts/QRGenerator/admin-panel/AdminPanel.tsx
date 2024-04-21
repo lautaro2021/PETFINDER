@@ -4,6 +4,7 @@ import QRGeneratorTable from "../QRGeneratorTable";
 import style from "./admin-panel.module.css";
 import Loader from "@/app/components/loader/Loader";
 import Input from "@/app/components/input/Input";
+import NavButton from "@/app/components/button/NavButton";
 
 function AdminPanel({
   data,
@@ -16,7 +17,7 @@ function AdminPanel({
   totalQr,
   totalPage
 }: {
-  data: { IDpet: string; QRurl: string; createdAt?:string }[];
+  data: { IDpet: string; QRurl: string; createdAt?: string }[];
   generateAction: () => void;
   downloadAction: () => void;
   children: React.ReactNode;
@@ -42,6 +43,7 @@ function AdminPanel({
           disabled={!inputValue}
         />
         <ActionButton action={downloadAction} text="Descargar toda la página" />
+        <NavButton text="Ver usuarios" type="link" href="/qr-generator/users" />
       </div>
       {isLoading ? (
         <Loader />
